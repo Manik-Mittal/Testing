@@ -1,0 +1,124 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* kmk */
+    box-sizing: border-box;
+
+
+    width: 100%;
+    margin-top: 20px;
+    ;
+    /* /mk */
+    overflow: hidden;
+    position: relative;
+    top: -40px;
+    margin-bottom: 35px;
+}
+
+.nav-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+
+
+.nav-logo p {
+    margin: -12px;
+
+    font-weight: 500;
+    font-size: 30px;
+}
+
+.nav-logo img {
+    margin: 30px;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    position: relative;
+    top: 24px;
+
+}
+
+.nav-menu li {
+    margin: 20px;
+
+    font-weight: 300;
+    font-size: 20px;
+    color: #515151;
+    cursor: pointer;
+}
+
+.nav-menu hr {
+    width: 80%;
+    border: none;
+    height: 3px;
+    background: red;
+    border-radius: 10px;
+}
+
+.nav-login-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.nav-login-cart img {
+    margin-right: 50px;
+}
+
+.nav-login-cart button {
+    height: 58px;
+    width: 157px;
+    margin-right: 50px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 70px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    background: white;
+    cursor: pointer;
+    color: #515151
+}
+
+button:hover {
+    background: rgb(43, 0, 255);
+    color: white;
+}
+
+.rules {
+    height: 2px;
+    border-radius: 5px;
+    background-color: rgb(7, 7, 7);
+}
+
+.nav-divider {
+    width: 100%;
+    position: relative;
+    top: -27px;
+}
+
+.nav-cart-count {
+    width: 22px;
+    height: 22px;
+    position: relative;
+    left: -54px;
+    top: -20px;
+    border-radius: 50%;
+    background: red;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

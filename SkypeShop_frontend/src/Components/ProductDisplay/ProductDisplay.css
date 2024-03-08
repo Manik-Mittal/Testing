@@ -1,0 +1,99 @@
+.productdisplay {
+    margin-top: 50px;
+    margin-left: 80px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pdleft {
+    display: flex;
+    justify-content: center;
+}
+
+.minor {
+    display: flex;
+    flex-direction: column;
+}
+
+.minor img {
+    height: 120px;
+    width: 100px;
+    margin-bottom: 30px;
+    margin-right: 50px;
+}
+
+.major img {
+    height: 570px;
+}
+
+.pdright {
+    width: 900px;
+    position: relative;
+    right: 170px;
+}
+
+
+
+.pdright_info {
+    display: flex;
+    align-items: center;
+}
+
+.pdright_info p {
+    margin-left: 10px;
+}
+
+.stars {
+    margin-top: 10px;
+}
+
+.product_display_price {
+    display: flex;
+}
+
+.product_display_price p {
+    margin-right: 30px;
+}
+
+.newp {
+    color: red;
+    font-size: 25px;
+    font-weight: 450;
+}
+
+.oldp {
+    color: grey;
+    text-decoration: line-through;
+    font-size: 25px;
+    font-weight: 450;
+}
+
+.description {
+    margin-bottom: 40px;
+}
+
+.size {
+    display: flex;
+    margin-top: 30px;
+}
+
+.x {
+    margin-right: 30px;
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.size_descirption button {
+    border-radius: 75px;
+    background-color: red;
+    color: white;
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-left: -10px;
+}
+
+.size_descirption button:hover {
+    background-color: blue;
+}

@@ -1,0 +1,86 @@
+.hero {
+
+    overflow-y: hidden;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: linear-gradient(180deg, #fde1ff, #e1ffea22 60%);
+    position: relative;
+    top: -130px;
+
+}
+
+
+.hero h2 {
+    font-weight: 500
+}
+
+.left {
+    margin-left: 50px;
+}
+
+.left-text {
+    display: flex;
+    align-items: center;
+}
+
+.left-text p {
+    font-size: 90px;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.left-text img {
+    height: 45px;
+
+}
+
+.para1 {
+    font-size: 90px;
+    font-weight: 500;
+    margin: 0px;
+    position: relative;
+    top: -15px;
+}
+
+.para2 {
+    font-size: 90px;
+    font-weight: 500;
+    margin: 0px;
+    position: relative;
+    top: -30px;
+}
+
+.colbut {
+    border-radius: 70px;
+    padding: 20px;
+    background: red;
+    color: white;
+    font-size: 20px;
+    margin-left: -6px;
+
+}
+
+.colbut img {
+    height: 15px;
+    width: 20px;
+    margin-left: 20px;
+}
+
+.right {
+    margin-left: 400px;
+
+
+    /* Example border radius */
+}
+
+.back-video {
+
+
+    height: 900px;
+    width: 700px;
+    margin-top: 10px;
+    margin-right: 50px;
+    position: relative;
+
+}

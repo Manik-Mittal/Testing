@@ -1,0 +1,37 @@
+.offers {
+    width: 65%;
+    height: 80vh;
+    background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
+    position: relative;
+    left: 260px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.opara {
+    font-size: 60px;
+    font-weight: 500;
+}
+
+.righto img {
+    height: 450px;
+}
+
+.spant {
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.lefto button {
+    background: red;
+    color: white;
+    border-radius: 70px;
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 40px;
+}

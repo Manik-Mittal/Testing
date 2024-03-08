@@ -1,0 +1,54 @@
+.footer {
+    background: black;
+    color: white;
+    padding: 20px 0;
+    /* Add padding to the top and bottom */
+    text-align: center;
+
+    /* Center align text */
+}
+
+.footc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footc img {
+    margin-right: 10px;
+    /* Reduce margin for better spacing */
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    /* Reduce top margin for better alignment */
+}
+
+.list li {
+    margin-left: 20px;
+    /* Reduce left margin for better spacing */
+}
+
+.footer p {
+    margin-top: 20px;
+    /* Reduce top margin */
+    margin-bottom: 10px;
+    /* Add bottom margin */
+}
+
+.footer hr {
+    margin-top: 20px;
+    /* Add top margin */
+    height: 5px;
+    /* Reduce height for subtlety */
+    border: none;
+    /* Remove border for a clean look */
+    background-color: white;
+    /* Use white color for contrast */
+    border-radius: 5px;
+    /* Apply border-radius for rounded corners */
+}

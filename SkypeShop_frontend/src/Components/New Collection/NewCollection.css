@@ -1,0 +1,30 @@
+.popular {
+    display: flex;
+    justify-content: center;
+}
+
+.pops {
+    margin-bottom: 70px;
+}
+
+.popular h1 {
+    font-size: 50px;
+    font-weight: 500;
+}
+
+.popular hr {
+    width: 200px;
+    height: 6px;
+    border-radius: 10px;
+    background: black;
+    margin-left: 100px;
+    margin-right: 25px;
+}
+
+.collections {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 50px;
+    gap: 30px;
+    margin-left: 110px;
+}

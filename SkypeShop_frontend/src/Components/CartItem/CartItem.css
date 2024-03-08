@@ -1,0 +1,101 @@
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 100px;
+}
+
+.cartitem h2 {
+    margin-top: 140px;
+    margin-bottom: 50px;
+    margin-left: 140px;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.item-desc {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.cart-item img {
+    height: 70px;
+    width: 70px
+}
+
+.remove {
+    height: 30px;
+    width: 30px
+}
+
+.title {
+    width: 180px;
+}
+
+.subtotal {
+    display: flex;
+    justify-content: space-around;
+}
+
+.shipping {
+    display: flex;
+    justify-content: space-around;
+}
+
+.total-amount {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cart-total-left {
+    width: 500px;
+    margin-left: 100px;
+}
+
+.cart-total-right {
+    margin-right: 100px;
+}
+
+
+.cart-total-right button {
+
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    color: white;
+    background-color: red;
+    margin-left: -40px;
+}
+
+.cart-total-right input {
+
+    padding: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+
+}
+
+.cart-total-right p {
+    font-size: 30px;
+}
+
+
+.cart-total-left button {
+    padding: 20px;
+    padding-left: 70px;
+    padding-right: 70px;
+    color: white;
+    background-color: red;
+
+}
+
+
+button:hover {
+    background-color: blue;
+}

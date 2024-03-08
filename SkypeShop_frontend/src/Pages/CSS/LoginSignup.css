@@ -1,0 +1,72 @@
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 192, 251);
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    margin-top: -128px;
+}
+
+.loginarea {
+    height: 92vh;
+    width: 35%;
+    background: white;
+}
+
+.form-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-info input,
+button {
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.loginarea h1,
+p,
+input,
+label {
+    margin-top: 30px;
+}
+
+.loginarea h1 {
+    text-align: center;
+}
+
+.checks {
+    text-align: center;
+}
+
+#name {
+    padding: 20px;
+}
+
+#email {
+    padding: 20px;
+}
+
+#password {
+    padding: 20px;
+}
+
+.form-info button {
+    padding: 20px;
+    border: none;
+    background-color: red;
+    color: white
+}
+
+.checks span {
+    color: red;
+    font-weight: 500;
+}
+
+#terms {
+    margin-right: 10px;
+}

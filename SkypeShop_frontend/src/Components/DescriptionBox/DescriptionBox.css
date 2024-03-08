@@ -1,0 +1,31 @@
+.description_individual_product {
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.desc_info {
+    display: flex;
+}
+
+.description-head {
+
+    border: 1px solid rgb(81, 79, 79);
+    padding: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+}
+
+.reviews-head {
+
+    border: 1px solid rgb(61, 60, 60);
+    padding: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.description-final {
+    border: 1px solid rgb(62, 61, 61);
+    padding: 40px;
+    margin-bottom: 70px;
+}
