@@ -1,4 +1,3 @@
-
 const express = require('express')
 const app = express();
 const mongoose = require('mongoose')
@@ -12,16 +11,16 @@ require('dotenv').config();
 
 app.use(express.json())
 app.use(cors())
-app.use(notfound)
+
 
 const port = process.env.PORT || 4000
-
-
 
 app.get('/', (req, res) => {
     res.send('Express App is running')
 })
 
+
+app.use(notfound)
 
 const start = async () => {
     try {
