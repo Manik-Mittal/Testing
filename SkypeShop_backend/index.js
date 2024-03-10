@@ -72,6 +72,16 @@ app.post('/removeproduct', async (req, res) => {
     res.json({ msg: "Deletd successfully bro" })
 })
 
+
+//api to update product
+app.patch('/updateproduct', async (req, res) => {
+    const product = await Product.findOneAndUpdate({ id: req.body.id }, req.body, { new: true, runValidators: true })
+    if (!product) {
+        res.json({ msg: "No data found" })
+    }
+    res.json({ product })
+})
+
 //if no url satisfied
 app.use(notfound)
 
