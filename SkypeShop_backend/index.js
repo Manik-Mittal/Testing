@@ -53,7 +53,6 @@ app.post('/addproduct', async (req, res) => {
     if (Products.length > 0) {
         const last_document = Products[Products.length - 1];
         id = last_document.id + 1;
-
     }
     try {
         req.body.id = id;
@@ -75,7 +74,8 @@ app.post('/removeproduct', async (req, res) => {
 
 //api to update product
 app.patch('/updateproduct', async (req, res) => {
-    const product = await Product.findOneAndUpdate({ id: req.body.id }, req.body, { new: true, runValidators: true })
+    const body = req.body;
+    const product = await Product.findOneAndUpdate({ id: req.body.id }, req.body.name, { new: true, runValidators: true })
     if (!product) {
         res.json({ msg: "No data found" })
     }
