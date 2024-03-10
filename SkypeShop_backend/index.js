@@ -16,10 +16,7 @@ app.use(cors())
 
 
 
-//API CREATION get product
-app.get('/', (req, res) => {
-    res.send('Express App is running')
-})
+
 
 //IMAGE STORAGE ENGINE
 const storage = multer.diskStorage({
@@ -43,6 +40,12 @@ app.post('/upload', upload.single('product'), (req, res) => {
     })
 })
 
+//API to get product
+app.get('/', async (req, res) => {
+    let products = await Product.find({})
+    res.json({ products })
+})
+
 //api to addproduct in database
 app.post('/addproduct', async (req, res) => {
     const Products = await Product.find({});
@@ -62,6 +65,12 @@ app.post('/addproduct', async (req, res) => {
     }
 })
 
+
+//api to delete a document in database
+app.post('/removeproduct', async (req, res) => {
+    await Product.findOneAndDelete({ id: req.body.id })
+    res.json({ msg: "Deletd successfully bro" })
+})
 
 //if no url satisfied
 app.use(notfound)
