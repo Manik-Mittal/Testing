@@ -1,0 +1,29 @@
+.navbar {
+    background-color: white;
+    width: 100%;
+    overflow: hidden;
+}
+
+.images {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+.img1 img {
+    height: 70px;
+    width: 200px;
+}
+
+.img2 img {
+    height: 50px;
+    width: 100px;
+}
+
+.navbar hr {
+    margin-top: -8px;
+}
