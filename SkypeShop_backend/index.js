@@ -15,9 +15,6 @@ app.use(express.json())
 app.use(cors())
 
 
-
-
-
 //IMAGE STORAGE ENGINE
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -75,7 +72,7 @@ app.post('/removeproduct', async (req, res) => {
 //api to update product
 app.patch('/updateproduct', async (req, res) => {
     const body = req.body;
-    const product = await Product.findOneAndUpdate({ id: req.body.id }, req.body.name, { new: true, runValidators: true })
+    const product = await Product.findOneAndUpdate({ id: req.body.id }, req.body, { new: true, runValidators: true })
     if (!product) {
         res.json({ msg: "No data found" })
     }

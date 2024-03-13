@@ -4,6 +4,10 @@
     overflow: hidden;
 }
 
+.navcont hr {
+    margin: 0px;
+}
+
 .images {
     display: flex;
     justify-content: space-between;
