@@ -51,7 +51,10 @@ app.post('/addproduct', async (req, res) => {
     if (Products.length > 0) {
         const last_document = Products[Products.length - 1];
         id = last_document.id + 1;
+
     }
+    else id = 1;
+
     try {
         req.body.id = id;
         const prod = await Product.create(req.body)
