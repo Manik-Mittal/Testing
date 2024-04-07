@@ -7,6 +7,7 @@ const path = require('path')
 const connectDB = require('./ConnectDb/connect')
 const notfound = require('./Middleware/notfound')
 const Product = require('./Model/Product')
+const LiveStream = require('./Model/LiveStream')
 require('dotenv').config();
 
 const port = process.env.PORT || 5000
