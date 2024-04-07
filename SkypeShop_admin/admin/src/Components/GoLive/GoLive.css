@@ -1,0 +1,64 @@
+.uploadedimg {
+    height: 150px;
+    width: 120px;
+}
+
+.addproduct {
+    background-color: white;
+    width: 70%;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.container {
+    padding: 40px;
+}
+
+.addproduct p {
+    color: grey;
+    font-size: 20px;
+}
+
+.addproduct input {
+    padding: 20px;
+    width: 80%;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.price {
+    display: flex;
+}
+
+.ptitle2 {
+    margin-left: 60px;
+}
+
+.prodcat {
+    margin-bottom: 50px;
+}
+
+.prodcat select {
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.prodbutton button {
+    padding: 20px;
+    color: white;
+    background-color: red;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    padding-right: 60px;
+    padding-left: 60px;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.prodbutton button:hover {
+
+    color: white;
+    background-color: blue;
+
+}
