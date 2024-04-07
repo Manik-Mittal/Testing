@@ -7,9 +7,6 @@ import ShopContext from '../../Context/ShopContext/ShopContext'
 const Item = (props) => {
 
     return (
-
-
-
         <div className='product'>
 
             <div className='image'>
@@ -28,7 +25,6 @@ const Item = (props) => {
             </div>
 
         </div>
-
     )
 }
 

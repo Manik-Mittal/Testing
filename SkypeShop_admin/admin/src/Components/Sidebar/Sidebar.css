@@ -1,6 +1,7 @@
 .sidebar {
     background-color: white;
     width: 300px;
+    min-height: 150vh;
 }
 
 
@@ -26,10 +27,23 @@
     align-items: center;
 }
 
-.list {
+.list,
+.list2 {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.list img {
+    margin-right: 40px;
+}
+
+.list2 img {
+    margin-right: 60px;
+}
+
+.list2 p {
+    margin-left: -10px;
 }
 
 .conatiner {

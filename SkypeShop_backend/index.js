@@ -44,6 +44,13 @@ app.get('/', async (req, res) => {
     res.json({ products })
 })
 
+//new_collection_endpoint
+app.get('/newcollections', async (req, res) => {
+    let newcollections = await Product.find({});
+    let mycollection = newcollections.slice(0, 8);
+    res.json({ mycollection })
+})
+
 //api to addproduct in database
 app.post('/addproduct', async (req, res) => {
     const Products = await Product.find({});

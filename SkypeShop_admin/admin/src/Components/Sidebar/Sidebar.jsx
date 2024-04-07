@@ -26,6 +26,15 @@ const Sidebar = () => {
                         </div>
                     </Link>
                 </div>
+                <div className="prodlist">
+                    <Link to='/live' style={{ textDecoration: 'none' }}>
+                        <div className="list2">
+                            <img src={productlist}></img>
+                            <p>Go Live</p>
+                        </div>
+                    </Link>
+                </div>
+
 
 
             </div>
