@@ -13,7 +13,6 @@ require('dotenv').config();
 const port = process.env.PORT || 5000
 
 app.use(express.json())
-app.use(express.urlencoded({ extended: false }));
 app.use(cors())
 
 
@@ -45,11 +44,24 @@ app.get('/', async (req, res) => {
     res.json({ products })
 })
 
+
 //new_collection_endpoint
 app.get('/newcollections', async (req, res) => {
     let newcollections = await Product.find({});
     let mycollection = newcollections.slice(0, 8);
     res.json({ mycollection })
+})
+
+//api to getall live streams
+app.get('/livestreams', async (req, res) => {
+    let livestreams = await LiveStream.find({})
+    res.json({ livestreams });
+})
+
+//api to get post the livestream in database
+app.post('/postlive', async (req, res) => {
+    const streams = await LiveStream.create(req.body)
+    res.status(201).json({ streams })
 })
 
 //api to addproduct in database

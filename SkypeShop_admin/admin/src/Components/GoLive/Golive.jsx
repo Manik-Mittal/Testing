@@ -11,6 +11,7 @@ const Golive = () => {
             new_price: 0,
             category: "",
             image: "",
+            url: ""
 
         }
     )
@@ -30,6 +31,46 @@ const Golive = () => {
         uploadedimg = upload;
     }
 
+
+    const postlive = async () => {
+        let resdata;
+        let formData = new FormData()
+        formData.append('product', image)
+
+        await fetch('http://localhost:5000/upload', {
+            method: 'POST',
+            body: formData
+
+        }).then(respnse => {
+            if (!respnse.ok) {
+                throw new Error('Failed to upload image');
+            }
+            return respnse.json();
+        })
+            .then(data => console.log(resdata = data))
+            .catch(err => console.log(err))
+
+        productdetails.image = resdata.image_url;
+
+        await fetch('http://localhost:5000/postlive', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(productdetails)
+        }).then((response) => {
+            if (!response.ok) {
+                throw new error("Failed to upload Live")
+            }
+            return response.json(response)
+        }).then((data) => {
+            console.log(data);
+            alert('LiveSuccessfully Posted')
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
     const handlename = (e) => {
         setproductdetails({ ...productdetails, name: e.target.value });
     }
@@ -41,6 +82,10 @@ const Golive = () => {
     }
     const handlecat = (e) => {
         setproductdetails({ ...productdetails, category: e.target.value });
+    }
+    const handleurl = (e) => {
+
+        setproductdetails({ ...productdetails, url: e.target.value });
     }
     return (
 
@@ -83,16 +128,16 @@ const Golive = () => {
                     <input type='file' name='product' id='imagefile' hidden onChange={imagehandler}></input>
                 </div>
                 <div className="prodbutton">
-                    <button >Create Room</button>
+                    <a href='http://127.0.0.1:5502/lobby.html'><button>Create Room</button></a>
                 </div>
 
                 <div className="title">
                     <p>Live Stream URL</p>
-                    <input type='text' name='name' placeholder='Enter Product name' onChange={handlename}></input>
+                    <input type='text' name='url' placeholder='Enter Product name' onChange={handleurl}></input>
                 </div>
 
                 <div className="prodbutton">
-                    <button >Post Live</button>
+                    <button onClick={() => { postlive() }}>Post Live</button>
                 </div>
             </div>
 

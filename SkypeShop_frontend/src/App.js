@@ -11,6 +11,7 @@ import { Footer } from './Components/Footer/Footer'
 import men_banner from '../src/Components/Assets/banner_mens.png'
 import women_banner from '../src/Components/Assets/banner_women.png'
 import kid_banner from '../src/Components/Assets/banner_kids.png'
+import LiveStream from './Components/LiveStream/LiveStream';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           </Route>
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/loginSignup" element={<LoginSignup />}></Route>
+          <Route path="/live" element={<LiveStream />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter >

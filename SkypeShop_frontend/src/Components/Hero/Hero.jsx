@@ -3,7 +3,8 @@ import './Hero.css'
 import hand_icon from '../Assets/hand_icon.png'
 import arrow_icon from '../Assets/arrow.png'
 import hero_image from '../Assets/hero_image.mp4'
-import Typical from 'react-typical'
+import { Link } from "react-router-dom";
+
 const Hero = () => {
     return (
         <div className='hero'>
@@ -21,9 +22,12 @@ const Hero = () => {
                 <button className='colbut'>Become a Seller
                     <img src={arrow_icon} alt=''></img>
                 </button>
-                <button className='colbut'>Explore Live
-                    <img src={arrow_icon} alt=''></img>
-                </button>
+
+                <Link to='/live'>
+                    <button className='colbut'>Explore Live
+                        <img src={arrow_icon} alt=''></img>
+                    </button>
+                </Link>
             </div>
 
             <div className="right">
