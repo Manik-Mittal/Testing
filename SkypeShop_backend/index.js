@@ -8,6 +8,7 @@ const connectDB = require('./ConnectDb/connect')
 const notfound = require('./Middleware/notfound')
 const Product = require('./Model/Product')
 const LiveStream = require('./Model/LiveStream')
+const UserInLive = require('./Model/UserInLive')
 require('dotenv').config();
 
 const port = process.env.PORT || 5000
@@ -58,10 +59,16 @@ app.get('/livestreams', async (req, res) => {
     res.json({ livestreams });
 })
 
-//api to get post the livestream in database
+//api to  post the livestream in database
 app.post('/postlive', async (req, res) => {
     const streams = await LiveStream.create(req.body)
     res.status(201).json({ streams })
+})
+
+//api to post the datils of user wanting to join live stream 
+app.post('/goinlive', async (req, res) => {
+    const useinlive = await UserInLive.create(req.body)
+    res.status(201).json({ useinlive })
 })
 
 //api to addproduct in database
