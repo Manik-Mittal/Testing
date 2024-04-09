@@ -93,6 +93,17 @@ const Golive = () => {
         <div className='addproduct'>
 
             <div className="container">
+
+                <div className="prodbutton">
+                    <a href='http://127.0.0.1:5502/adminlobby.html'><button>Create Room</button></a>
+                </div>
+
+                <div className="title">
+                    <p>Live Stream URL of above created room</p>
+                    <input type='text' name='url' placeholder='Enter Product name' onChange={handleurl}></input>
+                </div>
+
+
                 <div className="title">
                     <p>Product Name</p>
                     <input type='text' name='name' placeholder='Enter Product name' onChange={handlename}></input>
@@ -128,14 +139,9 @@ const Golive = () => {
                     </label>
                     <input type='file' name='product' id='imagefile' hidden onChange={imagehandler}></input>
                 </div>
-                <div className="prodbutton">
-                    <a href='http://127.0.0.1:5502/adminlobby.html'><button>Create Room</button></a>
-                </div>
 
-                <div className="title">
-                    <p>Live Stream URL</p>
-                    <input type='text' name='url' placeholder='Enter Product name' onChange={handleurl}></input>
-                </div>
+
+
 
                 <div className="prodbutton">
                     <button onClick={() => { postlive() }}>Post Live</button>
