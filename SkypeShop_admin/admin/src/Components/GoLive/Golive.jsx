@@ -70,6 +70,7 @@ const Golive = () => {
         }).catch((err) => {
             console.log(err)
         })
+
     }
     const handlename = (e) => {
         setproductdetails({ ...productdetails, name: e.target.value });
@@ -128,7 +129,7 @@ const Golive = () => {
                     <input type='file' name='product' id='imagefile' hidden onChange={imagehandler}></input>
                 </div>
                 <div className="prodbutton">
-                    <a href='http://127.0.0.1:5502/lobby.html'><button>Create Room</button></a>
+                    <a href='http://127.0.0.1:5502/adminlobby.html'><button>Create Room</button></a>
                 </div>
 
                 <div className="title">

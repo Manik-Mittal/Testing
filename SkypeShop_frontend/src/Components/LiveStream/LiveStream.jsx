@@ -36,7 +36,7 @@ const LiveStream = () => {
         }
         room = room.split('').reverse().join('');
         userlivedetails.room = Number(room)
-        //console.log(Number(room))
+        console.log(Number(room))
 
 
         await fetch('http://localhost:5000/goinlive', {
@@ -56,6 +56,8 @@ const LiveStream = () => {
         }).catch((err) => {
             console.log(err)
         })
+
+        window.location = `http://127.0.0.1:5502/lobby.html`
 
     }
     useEffect(() => {

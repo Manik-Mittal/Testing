@@ -53,6 +53,8 @@ app.get('/newcollections', async (req, res) => {
     res.json({ mycollection })
 })
 
+
+//.................................................................
 //api to getall live streams
 app.get('/livestreams', async (req, res) => {
     let livestreams = await LiveStream.find({})
@@ -70,6 +72,12 @@ app.post('/goinlive', async (req, res) => {
     const useinlive = await UserInLive.create(req.body)
     res.status(201).json({ useinlive })
 })
+
+app.get('/usersinlive', async (req, res) => {
+    const users = await UserInLive.find({ isinsidelive: false });
+    res.status(201).json({ users })
+})
+//..............................................................................
 
 //api to addproduct in database
 app.post('/addproduct', async (req, res) => {
