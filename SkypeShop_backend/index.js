@@ -65,7 +65,7 @@ app.post('/postlive', async (req, res) => {
     res.status(201).json({ streams })
 })
 
-//api to post the datils of user wanting to join live stream 
+//api to post the details of user wanting to join live stream 
 app.post('/goinlive', async (req, res) => {
     const useinlive = await UserInLive.create(req.body)
     res.status(201).json({ useinlive })

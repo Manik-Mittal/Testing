@@ -19,7 +19,43 @@ const LiveStream = () => {
         }).catch((err) => console.log(err))
     }
 
-    const registeruse = () => {
+    const registeruse = async (url, name) => {
+
+        const userlivedetails = {
+            livename: url,
+            isinsidelive: false,
+            room: 0
+        }
+
+        let room = "";
+        for (let i = url.length - 1; i >= 0; i--) {
+            if (url[i] != '=') {
+                room = room + url[i];
+            }
+            else break;
+        }
+        room = room.split('').reverse().join('');
+        userlivedetails.room = Number(room)
+        //console.log(Number(room))
+
+
+        await fetch('http://localhost:5000/goinlive', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(userlivedetails)
+        }).then((response) => {
+            if (!response.ok) {
+                throw new Error("Unable to post live users in database")
+            }
+            return response.json()
+        }).then((data) => {
+            console.log(data)
+        }).catch((err) => {
+            console.log(err)
+        })
 
     }
     useEffect(() => {
@@ -39,7 +75,7 @@ const LiveStream = () => {
                     return <div className="stream-card-content">
                         <div className="stream-card-image">
 
-                            <img src={val.image} onClick={() => { registeruse() }}></img>
+                            <img src={val.image} onClick={() => { registeruse(val.url, val.name) }}></img>
 
                         </div>
                         <div className="stream-card-text">
