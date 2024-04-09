@@ -1,3 +1,30 @@
+.stream-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 50px;
+    gap: 30px;
+    margin-left: 110px;
+
+}
+
 .live {
-    min-height: 100vh
+    min-height: 100vh;
+    position: relative;
+    top: -80px;
+    text-align: center;
+}
+
+
+.stream-card-image img {
+    width: 300px;
+    cursor: pointer;
+}
+
+
+.stream-card-text {
+    width: 300px;
+    position: relative;
+    right: -60px;
+    background: rgb(214, 210, 210);
+    height: 70px;
 }
