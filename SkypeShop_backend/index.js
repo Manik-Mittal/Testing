@@ -73,10 +73,19 @@ app.post('/goinlive', async (req, res) => {
     res.status(201).json({ useinlive })
 })
 
+//api to get all those user who are not in a live yet
 app.get('/usersinlive', async (req, res) => {
     const users = await UserInLive.find({ isinsidelive: false });
     res.status(201).json({ users })
 })
+
+//api to delete users once they are inside a live 
+app.post('/deleteuser', async (req, res) => {
+    await UserInLive.findOneAndDelete({ id: req.body.id })
+    res.status(201).json({ msg: "Deletd successfully bro" })
+})
+
+
 //..............................................................................
 
 //api to addproduct in database
