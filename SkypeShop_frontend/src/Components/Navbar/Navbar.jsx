@@ -8,6 +8,13 @@ import { ShopContext } from '../../Context/ShopContext/ShopContext'
 const Navbar = () => {
     const [menu, setmenu] = useState("shop")
     const { totalproducts } = useContext(ShopContext)
+
+
+    const logoutuser = () => {
+        localStorage.removeItem('auth-token');
+        window.location.replace("/")
+    }
+
     return (
         <>
             <div className='navbar'>
@@ -25,7 +32,9 @@ const Navbar = () => {
                 </ul>
 
                 <div className="nav-login-cart">
-                    <Link to="/loginSignup"><button>Login</button></Link>
+
+                    {localStorage.getItem('auth-token') ? <button onClick={() => { logoutuser() }}>Logout</button> : <Link to="/loginSignup"><button >Login</button></Link>}
+
                     <Link to="/cart"><img src={cart_icon} alt=""></img></Link>
                     <div className="nav-cart-count">{totalproducts()}</div>
                 </div>
