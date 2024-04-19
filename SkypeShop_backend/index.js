@@ -9,6 +9,8 @@ const notfound = require('./Middleware/notfound')
 const Product = require('./Model/Product')
 const LiveStream = require('./Model/LiveStream')
 const UserInLive = require('./Model/UserInLive')
+const UserLogin = require('./Model/UserLogin')
+
 require('dotenv').config();
 
 const port = process.env.PORT || 5000
@@ -86,6 +88,35 @@ app.post('/deleteuser', async (req, res) => {
 })
 
 
+//api fo login end point 
+app.post('/signup', async (req, res) => {
+    const { name, email, password } = req.body;
+
+    const check = await UserLogin.find({ email: email })
+
+    if (check.length > 0) {
+        return res.status(400).json({ msg: "User already exists" })
+    }
+    let cart = {};
+    for (let i = 0; i < 300; i++)cart[i] = 0;
+
+    let user = {};
+    user.name = name
+    user.email = email
+    user.password = password
+    user.cart = cart
+
+    const registereduser = await UserLogin.create(req.body);
+
+    const data = {
+        user: {
+            id: registereduser.id
+        }
+    }
+
+    const token = jwt.sign(data, 'secret_env')
+    res.json({ masg: "success", token })
+})
 //..............................................................................
 
 //api to addproduct in database
