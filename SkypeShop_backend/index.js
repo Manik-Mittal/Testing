@@ -88,7 +88,7 @@ app.post('/deleteuser', async (req, res) => {
 })
 
 
-//api fo login end point 
+//api fo signup end point 
 app.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
 
@@ -116,6 +116,28 @@ app.post('/signup', async (req, res) => {
 
     const token = jwt.sign(data, 'secret_env')
     res.json({ masg: "success", token })
+})
+
+//api for login endpoint 
+app.post('/login', async (req, res) => {
+    const user = await UserLogin.find({ email: req.body.email })
+
+    if (user.length == 0) {
+        return res.status(400).json({ msg: "Please enter correct emailid" })
+    }
+    console.log(user.password)
+    if (user[0].password == req.body.password) {
+        const data = {
+            user: {
+                id: user.id
+            }
+        }
+        const token = jwt.sign(data, 'secret_env')
+        res.json({ msg: "success", token })
+    }
+    else {
+        res.status(400).json({ msg: "Incorrect Password" })
+    }
 })
 //..............................................................................
 
