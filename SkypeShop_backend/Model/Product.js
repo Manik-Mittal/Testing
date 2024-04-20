@@ -32,7 +32,8 @@ const ProductSchema = new mongoose.Schema({
     availabe: {
         type: Boolean,
         defaut: true,
-    }
+    },
+
 })
 
 module.exports = mongoose.model('Product', ProductSchema)

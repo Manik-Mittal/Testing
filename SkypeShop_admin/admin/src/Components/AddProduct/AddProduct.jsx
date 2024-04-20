@@ -10,7 +10,11 @@ const AddProduct = () => {
             new_price: 0,
             category: "",
             image: "",
-
+            op1: "",
+            op2: "",
+            op3: "",
+            op4: "",
+            op5: "",
         }
     )
 
@@ -128,6 +132,8 @@ const AddProduct = () => {
                     </label>
                     <input type='file' name='product' id='imagefile' hidden onChange={imagehandler}></input>
                 </div>
+
+
                 <div className="prodbutton">
                     <button onClick={() => { buthandler() }}>Add product</button>
                 </div>

@@ -57,6 +57,7 @@ const LiveStream = () => {
             console.log(err)
         })
 
+
         window.location = `http://127.0.0.1:5502/lobby.html`
 
     }
@@ -84,6 +85,10 @@ const LiveStream = () => {
                             <span>{val.name}</span>
                             <br></br>
                             <span>${val.old_price}  ${val.new_price}</span>
+                            <br></br>
+                            <br></br>
+                            <button>Live Polling</button>
+                            <button>Live Bidiing</button>
                         </div>
                     </div>
 

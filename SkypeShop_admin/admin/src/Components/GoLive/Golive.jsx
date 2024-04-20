@@ -11,7 +11,12 @@ const Golive = () => {
             new_price: 0,
             category: "",
             image: "",
-            url: ""
+            url: "",
+            op1: "",
+            op2: "",
+            op3: "",
+            op4: "",
+            op5: ""
 
         }
     )
@@ -141,7 +146,27 @@ const Golive = () => {
                 </div>
 
 
+                <div className="polltitles">
+                    <p>Enter Options  For Poll</p>
+                    <input type='text' name='op1' placeholder='Enter Product name' onChange={handleop} ></input>
+                </div>
 
+                <div className="polltitles">
+                    <input type='text' name='op2' placeholder='Enter Product name' onChange={handleop}></input>
+                </div>
+
+                <div className="polltitles">
+                    <input type='text' name='op3' placeholder='Enter Product name' onChange={handleop} ></input>
+                </div>
+
+                <div className="polltitles">
+                    <input type='text' name='op4' placeholder='Enter Product name' onChange={handleop} ></input>
+                </div>
+
+
+                <div className="polltitles">
+                    <input type='text' name='name' placeholder='Enter Product name' onChange={handleop}></input>
+                </div>
 
                 <div className="prodbutton">
                     <button onClick={() => { postlive() }}>Post Live</button>

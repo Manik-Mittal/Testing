@@ -182,6 +182,13 @@ app.post('/deletecartitem', authenticateuser, async (req, res) => {
     await UserLogin.findOneAndUpdate({ _id: req.user.id }, { cartdata: user[0].cartdata })
     res.status(200).json({ msg: "item  deleted fromcart" })
 })
+
+//api to getall cart items
+app.post('/getcartitems', authenticateuser, async (req, res) => {
+    const user = await UserLogin.find({ _id: req.user.id })
+    console.log(user[0].cartdata)
+    res.status(200).json(user[0].cartdata)
+})
 //..............................................................................
 
 //api to addproduct in database

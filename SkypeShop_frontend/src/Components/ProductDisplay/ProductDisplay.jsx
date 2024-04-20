@@ -65,7 +65,6 @@ const ProductDisplay = (props) => {
                         <div className="x">L</div>
                     </div>
                     <button onClick={() => { helper(props.id) }}>Add To Cart</button>
-                    <button>Join Live Stream Selling</button>
                     <p><b>Category:</b>  Women,Tshirt,Crop Top</p>
                     <p><b>Tags:</b>   Modern ,Latest</p>
 

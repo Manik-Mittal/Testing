@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ShopContext } from "./ShopContext";
 import all_products from '../../Components/Assets/all_product'
 
-
-
 const ShopState = (props) => {
 
     const getDefualtCart = () => {
@@ -109,7 +107,7 @@ const ShopState = (props) => {
 
 
     useEffect(() => {
-        console.log(cartItem)
+        console.log(cartItem, 2)
     }, [cartItem])
 
     return (

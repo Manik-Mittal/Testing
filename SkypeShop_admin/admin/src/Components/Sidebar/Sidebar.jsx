@@ -35,6 +35,15 @@ const Sidebar = () => {
                     </Link>
                 </div>
 
+                <div className="prodlist">
+                    <Link to='/poll' style={{ textDecoration: 'none' }}>
+                        <div className="list2">
+                            <img src={productlist}></img>
+                            <p>Create Poll</p>
+                        </div>
+                    </Link>
+                </div>
+
 
 
             </div>
