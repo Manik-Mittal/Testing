@@ -104,9 +104,10 @@ app.post('/signup', async (req, res) => {
     user.name = name
     user.email = email
     user.password = password
-    user.cart = cart
+    user.cartdata = cart
 
-    const registereduser = await UserLogin.create(req.body);
+    const registereduser = await UserLogin.create(user);
+    console.log(registereduser.id)
 
     const data = {
         user: {
@@ -114,7 +115,7 @@ app.post('/signup', async (req, res) => {
         }
     }
 
-    const token = jwt.sign(data, 'secret_env')
+    const token = jwt.sign(data, 'secret_ecom')
     res.json({ masg: "success", token })
 })
 
@@ -125,19 +126,61 @@ app.post('/login', async (req, res) => {
     if (user.length == 0) {
         return res.status(400).json({ msg: "Please enter correct emailid" })
     }
-    console.log(user.password)
+    // console.log(user[0], 1)
     if (user[0].password == req.body.password) {
         const data = {
             user: {
-                id: user.id
+                id: user[0].id
             }
         }
-        const token = jwt.sign(data, 'secret_env')
+        //console.log(user[0].id)
+        const token = jwt.sign(data, 'secret_ecom')
         res.json({ msg: "success", token })
     }
     else {
         res.status(400).json({ msg: "Incorrect Password" })
     }
+})
+
+//middleware to authenticate user
+const authenticateuser = async (req, res, next) => {
+    const token = req.header('auth-token')
+    if (!token) {
+        res.status(401).json({ error: "Please Login first token not found" })
+    }
+    try {
+        const data = jwt.verify(token, 'secret_ecom')
+        req.user = data.user
+        next()
+    } catch (error) {
+        res.status(401).json({ error: "Please Login first" })
+    }
+}
+
+//api to add cart items
+app.post('/addtocart', authenticateuser, async (req, res) => {
+    const user = await UserLogin.find({ _id: req.user.id })
+    let itemid = Number(req.body.id)
+    // console.log(itemid)
+    // console.log(req.user.id)
+    // console.log(user[0])
+    user[0].cartdata[itemid] += 1;
+    console.log(user)
+    await UserLogin.findOneAndUpdate({ _id: req.user.id }, { cartdata: user[0].cartdata })
+    res.status(200).json({ msg: "item  added to cart" })
+})
+
+//api to delete cart items
+app.post('/deletecartitem', authenticateuser, async (req, res) => {
+    const user = await UserLogin.find({ _id: req.user.id })
+    let itemid = Number(req.body.id)
+    // console.log(itemid)
+    // console.log(req.user.id)
+    // console.log(user[0])
+    user[0].cartdata[itemid] -= 1;
+    console.log(user)
+    await UserLogin.findOneAndUpdate({ _id: req.user.id }, { cartdata: user[0].cartdata })
+    res.status(200).json({ msg: "item  deleted fromcart" })
 })
 //..............................................................................
 

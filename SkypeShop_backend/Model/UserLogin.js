@@ -13,7 +13,7 @@ const UserLogin = new mongoose.Schema({
         type: String,
     },
     cartdata: {
-        type: Object
+        type: Object,
     },
     date: {
         type: Date,

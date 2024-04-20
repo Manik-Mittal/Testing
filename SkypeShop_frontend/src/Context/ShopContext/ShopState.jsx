@@ -16,14 +16,70 @@ const ShopState = (props) => {
 
     const [cartItem, setcart] = useState(getDefualtCart());
 
-    const addTocart = (id) => {
-        setcart((prev) => { return { ...prev, [id]: prev[id] + 1 } });
+    const addTocart = async (id) => {
+
+        const itemadded = await fetch('http://localhost:5000/addtocart', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/form-data',
+                'Content-type': 'application/json',
+                'auth-token': `${localStorage.getItem('auth-token')}`
+            },
+            body: JSON.stringify({ "id": id })
+        }).then((response) => {
+            if (!response) {
+                return response.status(401).json({ msg: "Not able to post cart item" })
+            }
+            return response.json();
+        }).then((data) => {
+            console.log(data.error)
+
+            //if sucessfuly updtaed in database then add to cart in front end else not
+            if (data.error) {
+                alert('Please Login / Signup to add data to cart')
+            }
+            else {
+                const newCartItem = { ...cartItem };
+                newCartItem[id] = cartItem[id] + 1;
+                setcart(newCartItem);
+            }
+
+        }).catch((err) => {
+            console.log(err)
+        })
+
     }
 
-    const removeFromcart = (id) => {
-        setcart((prev) => {
-            return { ...prev, [id]: prev[id] - 1 }
-        });
+    const removeFromcart = async (id) => {
+        const itemadded = await fetch('http://localhost:5000/deletecartitem', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/form-data',
+                'Content-type': 'application/json',
+                'auth-token': `${localStorage.getItem('auth-token')}`
+            },
+            body: JSON.stringify({ "id": id })
+        }).then((response) => {
+            if (!response) {
+                return response.status(401).json({ msg: "Not able to post cart item" })
+            }
+            return response.json();
+        }).then((data) => {
+            console.log(data.error)
+
+            //if sucessfuly updtaed in database then add to cart in front end else not
+            if (data.error) {
+                alert('Please Login / Signup to add data to cart')
+            }
+            else {
+                const newCartItem = { ...cartItem };
+                newCartItem[id] = cartItem[id] - 1;
+                setcart(newCartItem);
+            }
+
+        }).catch((err) => {
+            console.log(err)
+        })
 
     }
 
