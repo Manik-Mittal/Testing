@@ -57,6 +57,8 @@ const Golive = () => {
 
         productdetails.image = resdata.image_url;
 
+        let id;
+
         await fetch('http://localhost:5000/postlive', {
             method: 'POST',
             headers: {
@@ -71,7 +73,35 @@ const Golive = () => {
             return response.json(response)
         }).then((data) => {
             console.log(data);
+            id = data.streams._id;
             alert('LiveSuccessfully Posted')
+        }).catch((err) => {
+            console.log(err)
+        })
+
+
+        //initalizing the count of options as zero in database
+
+        let options = {
+            prodid: id
+        }
+        for (let i = 1; i <= 5; i++)options[i] = 0;
+        console.log(options)
+
+        await fetch('http://localhost:5000/polloptions', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(options)
+        }).then((response) => {
+            if (!response.ok) {
+                throw new error("Failed to upload Live")
+            }
+            return response.json(response)
+        }).then((data) => {
+            console.log(data);
         }).catch((err) => {
             console.log(err)
         })

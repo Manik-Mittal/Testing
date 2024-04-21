@@ -10,6 +10,7 @@ const Product = require('./Model/Product')
 const LiveStream = require('./Model/LiveStream')
 const UserInLive = require('./Model/UserInLive')
 const UserLogin = require('./Model/UserLogin')
+const Polloption = require('./Model/Polloption')
 
 require('dotenv').config();
 
@@ -188,6 +189,66 @@ app.post('/getcartitems', authenticateuser, async (req, res) => {
     const user = await UserLogin.find({ _id: req.user.id })
     console.log(user[0].cartdata)
     res.status(200).json(user[0].cartdata)
+})
+
+//api to getthe product for polling 
+app.post('/getproductforpoll', async (req, res) => {
+
+    const product = await LiveStream.find({ _id: req.body.id })
+    console.log(product[0], 1);
+    const opt = {};
+    opt.op1 = product[0].op1;
+    opt.op2 = product[0].op2;
+    opt.op3 = product[0].op3;
+    opt.op4 = product[0].op4;
+    opt.op5 = product[0].op5;
+
+    res.status(200).json(opt)
+})
+
+//api to intialize the poll options in database  
+app.post('/polloptions', async (req, res) => {
+    const product = await Polloption.create(req.body)
+    console.log(product);
+    res.status(200).json(product)
+})
+
+//api to get polloptions
+app.post('/getpolloptions', async (req, res) => {
+    console.log(req.body.id)
+    const product = await Polloption.find({ prodid: req.body.id })
+    console.log(product);
+    res.status(200).json(product[0])
+})
+
+//update the count of polloptions on userclick
+app.post('/updatepolloptions', async (req, res) => {
+    console.log(req.body.id, req.body.optno)
+    const optno = req.body.optno;
+    const product = await Polloption.find({ prodid: req.body.id })
+    if (optno == '1') {
+        let newcount = product[0][1] + 1;
+        const newprod = await Polloption.findOneAndUpdate({ prodid: req.body.id }, { '1': newcount })
+    }
+    else if (optno == '2') {
+        let newcount = product[0][2] + 1;
+        const newprod = await Polloption.findOneAndUpdate({ prodid: req.body.id }, { '2': newcount })
+    }
+    else if (optno == '3') {
+        let newcount = product[0][3] + 1;
+        const newprod = await Polloption.findOneAndUpdate({ prodid: req.body.id }, { '3': newcount })
+    }
+    else if (optno == '4') {
+        let newcount = product[0][4] + 1;
+        const newprod = await Polloption.findOneAndUpdate({ prodid: req.body.id }, { '4': newcount })
+    }
+    else if (optno == '5') {
+        let newcount = product[0][5] + 1;
+        const newprod = await Polloption.findOneAndUpdate({ prodid: req.body.id }, { '5': newcount })
+    }
+    res.status(200).json({ msg: "success" })
+    // console.log(product);
+    // res.status(200).json(product[0])
 })
 //..............................................................................
 

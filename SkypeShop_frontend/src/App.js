@@ -12,6 +12,7 @@ import men_banner from '../src/Components/Assets/banner_mens.png'
 import women_banner from '../src/Components/Assets/banner_women.png'
 import kid_banner from '../src/Components/Assets/banner_kids.png'
 import LiveStream from './Components/LiveStream/LiveStream';
+import Poll from './Components/Poll/Poll'
 
 function App() {
   return (
@@ -30,6 +31,11 @@ function App() {
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/loginSignup" element={<LoginSignup />}></Route>
           <Route path="/live" element={<LiveStream />}></Route>
+
+          <Route path="/poll" element={<Poll />}>
+            <Route path=":id" element={<Poll />}></Route>
+          </Route>
+
         </Routes>
         <Footer />
       </BrowserRouter >

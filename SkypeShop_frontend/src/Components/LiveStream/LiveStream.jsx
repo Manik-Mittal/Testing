@@ -2,6 +2,7 @@ import React from 'react'
 import './LiveStream.css'
 import { useState } from 'react'
 import { useEffect } from 'react';
+import { Link } from "react-router-dom";
 const LiveStream = () => {
 
     const [live, setlive] = useState([]);
@@ -87,7 +88,9 @@ const LiveStream = () => {
                             <span>${val.old_price}  ${val.new_price}</span>
                             <br></br>
                             <br></br>
-                            <button>Live Polling</button>
+
+                            {!val.op1 && !val.op2 && !val.op3 && !val.op4 && !val.op5 ? <button hidden></button> : <Link to={`/poll/${val._id}`}><button>Live Polling</button></Link>}
+
                             <button>Live Bidiing</button>
                         </div>
                     </div>
