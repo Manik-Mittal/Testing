@@ -114,23 +114,24 @@ const Poll = () => {
             <h1>LivePolling</h1>
             <div className='options'>
                 <div className="op1">
-
-                    {!options.op1 ? <button hidden>{options.op1}</button> : <button onClick={() => handlecount(polloption[1], polloption.prodid, 1)}>{options.op1}  {polloption[1]}</button>}
+                    {!options.op1 ? <p hidden>{polloption[1]}</p> : <p>{polloption[1]}</p>}
+                    {!options.op1 ? <button hidden>{options.op1}</button> : <button onClick={() => handlecount(polloption[1], polloption.prodid, 1)}>{options.op1}  </button>}
                 </div>
                 <div className="op2">
-
-                    {!options.op2 ? <button hidden>{options.op2}</button> : <button onClick={() => handlecount(polloption[2], polloption.prodid, 2)}>{options.op2}  {polloption[2]}</button>}
+                    {!options.op2 ? <p hidden>{polloption[2]}</p> : <p>{polloption[2]}</p>}
+                    {!options.op2 ? <button hidden>{options.op2}</button> : <button onClick={() => handlecount(polloption[2], polloption.prodid, 2)}>{options.op2}</button>}
                 </div>
                 <div className="op3">
-
-                    {!options.op3 ? <button hidden>{options.op3}</button> : <button onClick={() => handlecount(polloption[3], polloption.prodid, 3)}>{options.op3}  {polloption[3]}</button>}
+                    {!options.op3 ? <p hidden>{polloption[3]}</p> : <p>{polloption[3]}</p>}
+                    {!options.op3 ? <button hidden>{options.op3}</button> : <button onClick={() => handlecount(polloption[3], polloption.prodid, 3)}>{options.op3} </button>}
                 </div>
                 <div className="op4">
-
-                    {!options.op4 ? <button hidden>{options.op4}</button> : <button onClick={() => handlecount(polloption[4], polloption.prodid, 4)}>{options.op4}  {polloption[4]}</button>}
+                    {!options.op4 ? <p hidden>{polloption[4]}</p> : <p>{polloption[4]}</p>}
+                    {!options.op4 ? <button hidden>{options.op4}</button> : <button onClick={() => handlecount(polloption[4], polloption.prodid, 4)}>{options.op4}  </button>}
                 </div>
                 <div className="op5">
-                    {!options.op5 ? <button hidden>{options.op5}</button> : <button onClick={handlecount(polloption[5], polloption.prodid, 5)}>{options.op5}  {polloption[5]}</button>}
+                    {!options.op5 ? <p hidden>{polloption[5]}</p> : <p>{polloption[5]}</p>}
+                    {!options.op5 ? <button hidden>{options.op5}</button> : <button onClick={handlecount(polloption[5], polloption.prodid, 5)}>{options.op5}  </button>}
                 </div>
             </div>
         </div>
