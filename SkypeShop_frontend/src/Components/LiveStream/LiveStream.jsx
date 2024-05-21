@@ -89,9 +89,9 @@ const LiveStream = () => {
                             <br></br>
                             <br></br>
 
-                            {!val.op1 && !val.op2 && !val.op3 && !val.op4 && !val.op5 ? <button hidden></button> : <Link to={`/poll/${val._id}`}><button>Live Polling</button></Link>}
+                            {!val.op1 && !val.op2 && !val.op3 && !val.op4 && !val.op5 ? <button hidden></button> : <Link to={`/poll/${val._id}`}><button className='pollbutton'>Live Polling</button></Link>}
 
-                            <button>Live Bidiing</button>
+                            <button className='bidbutton'>Live Bidiing</button>
                         </div>
                     </div>
 

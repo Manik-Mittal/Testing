@@ -37,6 +37,22 @@
     transition: all .3s;
 }
 
+.pollbutton {
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: red;
+    position: relative;
+    margin-top: -20px;
+}
+
+
+.bidbutton {
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    background-color: red;
+}
 
 @keyframes infiniteupdown {
     0% {

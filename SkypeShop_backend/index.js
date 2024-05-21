@@ -17,7 +17,15 @@ require('dotenv').config();
 const port = process.env.PORT || 5000
 
 app.use(express.json())
-app.use(cors())
+
+const corsOptions = {
+    origin: ['https://skype-shop-6a8e.vercel.app/', 'http://localhost:3000/'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
+// app.use(cors())
 
 
 //IMAGE STORAGE ENGINE
@@ -191,7 +199,7 @@ app.post('/getcartitems', authenticateuser, async (req, res) => {
     res.status(200).json(user[0].cartdata)
 })
 
-//api to getthe product for polling 
+//api to getthe product for polling  entered by admin 
 app.post('/getproductforpoll', async (req, res) => {
 
     const product = await LiveStream.find({ _id: req.body.id })

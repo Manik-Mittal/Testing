@@ -13,7 +13,7 @@
 }
 
 .poll {
-    min-height: 100vh;
+    height: 150vh;
     text-align: center;
     background-color: antiquewhite;
     position: relative;

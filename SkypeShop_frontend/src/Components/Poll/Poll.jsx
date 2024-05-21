@@ -8,7 +8,9 @@ const Poll = () => {
 
     const { id } = useParams();
 
+    //options of poll
     const [options, setoptions] = useState({})
+    //cnt of poll
     const [polloption, setpolloptions] = useState({})
     const [vote, setvote] = useState({
         '1': 0,

@@ -12,6 +12,8 @@ const ShopState = (props) => {
         return cart;
     }
 
+
+
     const [cartItem, setcart] = useState(getDefualtCart());
 
     const addTocart = async (id) => {
