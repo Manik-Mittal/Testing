@@ -33,7 +33,7 @@ const Navbar = () => {
 
                 <div className="nav-login-cart">
 
-                    {localStorage.getItem('auth-token') ? <button onClick={() => { logoutuser() }}>Logout</button> : <Link to="/loginSignup"><button >Login</button></Link>}
+                    {localStorage.getItem('auth-token') ? <button onClick={() => { logoutuser() }}>Logout</button> : <Link to="/loginSignup"><button className='login'>Login</button></Link>}
 
                     <Link to="/cart"><img src={cart_icon} alt=""></img></Link>
                     <div className="nav-cart-count">{totalproducts()}</div>
