@@ -8,7 +8,7 @@ const Footer = () => {
     return (
         <div className='footer'>
             <div className="footc">
-                <img src={logo} alt=''></img>
+                {/* <img src={logo} alt=''></img> */}
                 <h1>SkypeShop</h1>
             </div>
 

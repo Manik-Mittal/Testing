@@ -21,7 +21,6 @@ const Navbar = () => {
 
                 <div className='nav-logo'>
                     <img src={logo} alt=""></img>
-                    <p>SkypeShop</p>
                 </div>
 
                 <ul className='nav-menu'>
