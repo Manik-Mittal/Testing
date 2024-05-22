@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(255, 192, 251);
+    background-color: rgb(253, 248, 253);
     height: 100vh;
     width: 100%;
     overflow: hidden;
@@ -10,7 +10,8 @@
 }
 
 .loginarea {
-    height: 92vh;
+    position: relative;
+    height: 800px;
     width: 35%;
     background: white;
 }
@@ -23,7 +24,7 @@
 
 .form-info input,
 button {
-    margin-top: 30px;
+    margin-top: 50px;
     margin-left: 50px;
     margin-right: 50px;
 }
@@ -32,7 +33,7 @@ button {
 p,
 input,
 label {
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 .loginarea h1 {
@@ -69,4 +70,9 @@ label {
 
 #terms {
     margin-right: 10px;
+}
+
+.loginimg img {
+    height: 800px;
+    width: 550px
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './CSS/LoginSignup.css'
+import loginimg from '../Components/Assets/loginimage.jpg'
 
 const LoginSignup = () => {
     const [state, setstate] = useState("Login")
@@ -78,6 +79,11 @@ const LoginSignup = () => {
 
     return (
         <div className='login'>
+
+
+            <div className="loginimg">
+                <img src={loginimg}></img>
+            </div>
             <div className="loginarea">
                 <h1>{state}</h1>
                 <div className="form-info">
