@@ -30,6 +30,8 @@
 
 .left-text img {
     height: 45px;
+    position: relative;
+    margin-top: 35px;
 }
 
 .para1 {

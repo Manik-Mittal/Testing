@@ -36,6 +36,7 @@
 .nav-logo img {
     margin: 30px;
     height: 55px;
+    margin-bottom: 40px;
 }
 
 .nav-menu {
@@ -49,7 +50,7 @@
 
 .nav-menu li {
     margin: 20px;
-
+    margin-bottom: 25px;
     font-weight: 300;
     font-size: 20px;
     color: #515151;
@@ -78,7 +79,7 @@
 .nav-login-cart button {
     height: 58px;
     width: 157px;
-    margin-bottom: 22px;
+    margin-bottom: 40px;
     margin-right: 50px;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
