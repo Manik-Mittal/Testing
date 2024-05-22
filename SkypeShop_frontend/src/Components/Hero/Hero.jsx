@@ -2,7 +2,7 @@ import React from 'react'
 import './Hero.css'
 import hand_icon from '../Assets/hand_icon.png'
 import arrow_icon from '../Assets/arrow.png'
-import hero_image from '../Assets/hero_image.mp4'
+import hero_image from '../Assets/hero_image.png'
 import { Link } from "react-router-dom";
 
 const Hero = () => {
@@ -31,9 +31,10 @@ const Hero = () => {
             </div>
 
             <div className="right">
-                <video autoPlay loop muted disablePictureInPicture className='back-video'>
+                {/* <video autoPlay loop muted disablePictureInPicture className='back-video'>
                     <source src={hero_image} type="video/mp4" />
-                </video>
+                </video> */}
+                <img src={hero_image} alt='' ></img>
             </div>
         </div>
     )
