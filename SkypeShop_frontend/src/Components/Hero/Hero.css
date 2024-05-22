@@ -1,5 +1,4 @@
 .hero {
-
     overflow-y: hidden;
     display: flex;
     justify-content: space-evenly;
@@ -7,15 +6,14 @@
     background: linear-gradient(180deg, #fde1ff, #e1ffea22 60%);
     position: relative;
     top: -130px;
-
 }
 
-
 .hero h2 {
-    font-weight: 500
+    font-weight: 500;
 }
 
 .left {
+    margin-top: 80px;
     margin-left: 50px;
 }
 
@@ -32,7 +30,6 @@
 
 .left-text img {
     height: 45px;
-
 }
 
 .para1 {
@@ -58,7 +55,6 @@
     color: white;
     font-size: 20px;
     margin-left: -6px;
-
 }
 
 .colbut img {
@@ -68,19 +64,269 @@
 }
 
 .right {
+    margin-top: 40px;
     margin-left: 400px;
+}
 
 
-    /* Example border radius */
+.right img {
+    height: 750px;
+    width: 500px
 }
 
 .back-video {
-
-
     height: 900px;
     width: 700px;
     margin-top: 10px;
     margin-right: 50px;
     position: relative;
+}
 
+/* Media query for window size <= 1500px */
+@media (max-width: 1500px) {
+    .left {
+        margin-top: 80px;
+        margin-left: 30px;
+    }
+
+    .left-text p {
+        font-size: 60px;
+        margin-right: 5px;
+    }
+
+    .para1,
+    .para2 {
+        font-size: 60px;
+        top: 0;
+    }
+
+    .colbut {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .colbut img {
+        height: 12px;
+        width: 16px;
+        margin-left: 15px;
+    }
+
+    .right {
+        margin-top: 40px;
+        margin-left: 200px;
+    }
+
+    .right img {
+        height: 550px;
+        width: 400px
+    }
+
+    .back-video {
+        height: 600px;
+        width: 500px;
+        margin-right: 20px;
+    }
+}
+
+/* Media query for window size <= 1300px and >= 1096px */
+@media (max-width: 1300px) and (min-width: 1096px) {
+    .left {
+        margin-top: 80px;
+        margin-left: 20px;
+    }
+
+    .left-text p {
+        font-size: 50px;
+    }
+
+    .para1,
+    .para2 {
+        font-size: 50px;
+    }
+
+    .colbut {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .colbut img {
+        height: 10px;
+        width: 14px;
+        margin-left: 10px;
+    }
+
+    .right {
+        margin-top: 40px;
+        margin-left: 100px;
+    }
+
+
+
+    .right img {
+        height: 450px;
+        width: 300px
+    }
+
+    .back-video {
+        height: 500px;
+        width: 400px;
+        margin-right: 10px;
+    }
+}
+
+/* Media query for window size <= 1096px and >= 990px */
+@media (max-width: 1096px) and (min-width: 990px) {
+    .left {
+        margin-top: 40px;
+        margin-left: 10px;
+    }
+
+    .left-text p {
+        font-size: 40px;
+    }
+
+    .para1,
+    .para2 {
+        font-size: 40px;
+    }
+
+    .colbut {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .colbut img {
+        height: 8px;
+        width: 12px;
+        margin-left: 5px;
+    }
+
+    .right {
+        margin-top: 40px;
+        margin-left: 50px;
+    }
+
+    .right img {
+        height: 450px;
+        width: 300px
+    }
+
+
+    .back-video {
+        height: 400px;
+        width: 300px;
+    }
+}
+
+/* Media query for window size <= 990px */
+@media (max-width: 990px) {
+    .hero {
+        flex-direction: column;
+        align-items: center;
+        top: 0;
+    }
+
+    .left {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .left-text {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-text p {
+        font-size: 35px;
+    }
+
+    .left-text img {
+        height: 35px;
+        /* Adjusted */
+        width: 35px;
+        /* Adjusted */
+        margin: 10px 0;
+    }
+
+    .para1,
+    .para2 {
+        font-size: 35px;
+    }
+
+    .colbut {
+        font-size: 12px;
+        padding: 10px;
+        margin-top: 10px;
+        margin-left: 0;
+    }
+
+    .colbut img {
+        height: 10px;
+        /* Adjusted */
+        width: 12px;
+        /* Adjusted */
+        margin-left: 5px;
+    }
+
+    .right {
+        margin-left: 0;
+    }
+
+    .back-video {
+        height: 350px;
+        width: 250px;
+    }
+}
+
+/* Media query for window size <= 768px */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .left {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .left-text {
+        flex-direction: flex-start;
+        align-items: flex-start;
+    }
+
+    .left-text p {
+        font-size: 30px;
+    }
+
+    .left-text img {
+        height: 25px;
+        width: 25px;
+        margin-right: 10px;
+    }
+
+    .para1,
+    .para2 {
+        font-size: 30px;
+    }
+
+    .colbut {
+        font-size: 10px;
+        padding: 8px;
+    }
+
+    .colbut img {
+        height: 8px;
+        width: 10px;
+        margin-left: 5px;
+    }
+
+    .right {
+        margin-left: 0;
+    }
+
+    .back-video {
+        height: 300px;
+        width: 250px;
+    }
 }
