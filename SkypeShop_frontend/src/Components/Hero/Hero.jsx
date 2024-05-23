@@ -19,9 +19,10 @@ const Hero = () => {
                 <p className='para2'>
                     Alive Mart
                 </p>
-                <button className='colbut'>Become a Seller
+                <a href='https://skype-shop-dsom.vercel.app/'> <button className='colbut'>Become a Seller
                     <img src={arrow_icon} alt=''></img>
-                </button>
+                </button></a>
+
 
                 <Link to='/live'>
                     <button className='colbut'>Explore Live
