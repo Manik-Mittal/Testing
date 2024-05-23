@@ -16,7 +16,7 @@ const ShopState = (props) => {
 
     const addTocart = async (id) => {
 
-        const itemadded = await fetch('http://localhost:5000/addtocart', {
+        const itemadded = await fetch('https://skypeshop.onrender.com/addtocart', {
             method: 'POST',
             headers: {
                 Accept: 'application/form-data',
@@ -49,7 +49,7 @@ const ShopState = (props) => {
     }
 
     const removeFromcart = async (id) => {
-        const itemadded = await fetch('http://localhost:5000/deletecartitem', {
+        const itemadded = await fetch('https://skypeshop.onrender.com/deletecartitem', {
             method: 'POST',
             headers: {
                 Accept: 'application/form-data',

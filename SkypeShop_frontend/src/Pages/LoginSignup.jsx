@@ -48,7 +48,7 @@ const LoginSignup = () => {
     const signup = async () => {
         let token;
         console.log("signup", formdata)
-        await fetch('http://localhost:5000/signup', {
+        await fetch('https://skypeshop.onrender.com/signup', {
             method: 'POST',
             headers: {
                 Accept: 'application/formdata',
