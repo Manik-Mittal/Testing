@@ -16,7 +16,7 @@ require('dotenv').config();
 
 const port = process.env.PORT || 5000
 
-const allowedOrigins = ['https://skype-shop.vercel.app/'];
+const allowedOrigins = ['https://skype-shop.vercel.app'];
 
 app.use(
     cors({
