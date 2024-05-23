@@ -16,7 +16,7 @@ require('dotenv').config();
 
 const port = process.env.PORT || 5000
 
-const allowedOrigins = ['https://skype-shop.vercel.app'];
+const allowedOrigins = ['https://skype-shop.vercel.app', 'http://localhost:3000'];
 
 app.use(
     cors({
@@ -39,19 +39,6 @@ app.options('*', cors({
 }));
 
 app.use(express.json())
-
-
-
-
-
-// const corsOptions = {
-//     origin: ['http://localhost:3000/', 'https://skype-shop.vercel.app/'],
-//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//     allowedHeaders: ['Content-Type', 'Authorization'],
-// };
-
-// app.use(cors(corsOptions));
-// app.use(cors())
 
 
 //IMAGE STORAGE ENGINE
@@ -90,6 +77,12 @@ app.get('/newcollections', async (req, res) => {
     res.json({ mycollection })
 })
 
+
+app.get('/getproduct', async (req, res) => {
+    const { id } = req.body
+    let newcollections = await Product.find({ id: id })
+    res.json({ newcollections })
+})
 
 //.................................................................
 //api to getall live streams

@@ -1,13 +1,37 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import '../Pages/CSS/ShopCategory.css'
 import { ShopContext } from '../Context/ShopContext/ShopContext'
 import dropdown_icon from '../Components/Assets/dropdown_icon.png'
 import { Item } from '../Components/Item/Item'
+import { useEffect } from 'react'
 
 
 const ShopCategory = (props) => {  //getting props from app.js
-    console.log(props)
-    const { all_products } = useContext(ShopContext)
+
+    const [products, setproducts] = useState([]);
+    console.log(products)
+    const fetchallproducts = async () => {
+        await fetch('http://localhost:5000').then((response) => {
+            if (!response) {
+                throw new Error('Failed to fetch newcollection');
+            }
+            return response.json();
+        }).then((data) => {
+            let newprods = { ...products };
+            newprods = data
+            setproducts(data.products)
+            console.log(products)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
+    useEffect(() => {
+        fetchallproducts();
+    }, [])
+
+    // const { all_products } = useContext(ShopContext)
+
     return (
         <div className='shopcat'>
 
@@ -25,8 +49,8 @@ const ShopCategory = (props) => {  //getting props from app.js
 
 
             <div className="prods">
-                {all_products.map((val, index) => {
-                    if (val.category === props.category) {
+                {products.map((val, index) => {
+                    if (val.category == props.category) {
                         return <Item key={index} id={val.id} name={val.name} image={val.image} new_price={val.new_price} old_price={val.old_price} />
                     }
                 })}
