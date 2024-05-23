@@ -9,7 +9,7 @@ const NewCollection = () => {
     const [nc, setnc] = useState([]);
 
     const bringnewcollection = async () => {
-        await fetch('https://skype-shop-yazf.vercel.app/newcollections').then((response) => {
+        await fetch('https://skypeshop.onrender.com/newcollections').then((response) => {
             if (!response.ok) {
                 throw new Error('Failed to fetch newcollection');
             }
