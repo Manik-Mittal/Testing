@@ -19,7 +19,7 @@ const port = process.env.PORT || 5000
 app.use(express.json())
 
 const corsOptions = {
-    origin: ['http://localhost:3000/'],
+    origin: ['http://localhost:3000/', 'https://skype-shop.vercel.app/'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
