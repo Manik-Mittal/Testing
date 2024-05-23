@@ -11,7 +11,7 @@ const ShopCategory = (props) => {  //getting props from app.js
     const [products, setproducts] = useState([]);
     console.log(products)
     const fetchallproducts = async () => {
-        await fetch('http://localhost:5000').then((response) => {
+        await fetch('https://skypeshop.onrender.com').then((response) => {
             if (!response) {
                 throw new Error('Failed to fetch newcollection');
             }

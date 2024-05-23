@@ -15,7 +15,7 @@ const Product = () => {
     const { id } = useParams();
     const fetchallproducts = async () => {
         console.log(1)
-        await fetch('http://localhost:5000').then((response) => {
+        await fetch('https://skypeshop.onrender.com').then((response) => {
             if (!response) {
                 throw new Error('Failed to fetch newcollection');
             }
