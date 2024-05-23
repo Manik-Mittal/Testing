@@ -18,13 +18,37 @@ const port = process.env.PORT || 5000
 
 app.use(express.json())
 
-const corsOptions = {
-    origin: ['http://localhost:3000/', 'https://skype-shop.vercel.app/'],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    allowedHeaders: ['Content-Type', 'Authorization'],
-};
 
-app.use(cors(corsOptions));
+const allowedOrigins = ['https://skype-shop.vercel.app/'];
+
+app.use(
+    cors({
+        origin: (origin, callback) => {
+            if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+                callback(null, true);  // Allow the origin
+            } else {
+                callback(new Error('Not allowed by CORS'));
+            }
+        },
+        credentials: true,  // If you're sending credentials
+    })
+);
+
+app.options('*', cors({
+    origin: allowedOrigins,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Origin', 'Content-Type', 'Authorization'],
+    credentials: true,
+}));
+
+
+// const corsOptions = {
+//     origin: ['http://localhost:3000/', 'https://skype-shop.vercel.app/'],
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+// };
+
+// app.use(cors(corsOptions));
 // app.use(cors())
 
 
