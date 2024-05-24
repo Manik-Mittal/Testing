@@ -156,7 +156,8 @@ app.post('/login', async (req, res) => {
     }
     // console.log(user[0], 1)
     if (user[0].password == req.body.password) {
-        const data = {
+        const data = {    //data is object with user field inside it 
+            //user field has been mapped to an object with id field inside it
             user: {
                 id: user[0].id
             }
@@ -173,6 +174,7 @@ app.post('/login', async (req, res) => {
 //middleware to authenticate user
 const authenticateuser = async (req, res, next) => {
     const token = req.header('auth-token')
+    console.log(token)
     if (!token) {
         res.status(401).json({ error: "Please Login first token not found" })
     }
@@ -197,6 +199,15 @@ app.post('/addtocart', authenticateuser, async (req, res) => {
     await UserLogin.findOneAndUpdate({ _id: req.user.id }, { cartdata: user[0].cartdata })
     res.status(200).json({ msg: "item  added to cart" })
 })
+
+// //api to get usercart
+// app.post('/getcart', authenticateuser, async (req, res) => {
+//     const user = await UserLogin.find({ _id: req.user.id })
+//     console.log(user[0].cartdata)
+//     let cart = user[0].cartdata;
+//     // await UserLogin.findOneAndUpdate({ _id: req.user.id }, { cartdata: user[0].cartdata })
+//     res.status(200).json({ cartdata: cart })
+// })
 
 //api to delete cart items
 app.post('/deletecartitem', authenticateuser, async (req, res) => {

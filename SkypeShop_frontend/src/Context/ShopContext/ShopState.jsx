@@ -4,16 +4,47 @@ import all_products from '../../Components/Assets/all_product'
 
 const ShopState = (props) => {
 
-    const getDefualtCart = () => {
-        let cart = {};
-        for (let i = 0; i < all_products.length; i++) {
-            cart[i] = 0;
-        }
-        return cart;
+    const getcart = async (token) => {
+        console.log(token)
+        await fetch('http://localhost:5000/getcartitems', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/form-data',
+                'Content-type': 'application/json',
+                'auth-token': `${localStorage.getItem('auth-token')}`
+            }
+        }).then((response) => {
+            if (!response) {
+                throw Error("Unable to fetch cart")
+            }
+            return response.json()
+        }).then((data) => {
+            console.log(data)
+            setcart(data);
+        }).catch((err) => {
+            console.log(err)
+        })
+
     }
 
-    const [cartItem, setcart] = useState(getDefualtCart());
+    const getDefualtCart = () => {
+        let cart = {}
+        if (localStorage.getItem('auth-token')) {
+            getcart(localStorage.getItem('auth-token'));
+        }
+        else {
+            for (let i = 0; i < all_products.length; i++) {
+                cart[i] = 0;
+            }
+            setcart(cart)
+        }
+    }
 
+
+
+    const [cartItem, setcart] = useState({});
+
+    console.log(cartItem)
     const addTocart = async (id) => {
 
         const itemadded = await fetch('https://skypeshop.onrender.com/addtocart', {
@@ -107,8 +138,8 @@ const ShopState = (props) => {
 
 
     useEffect(() => {
-        console.log(cartItem, 2)
-    }, [cartItem])
+        getDefualtCart();
+    }, [])
 
     return (
         <ShopContext.Provider value={{ all_products, cartItem, addTocart, removeFromcart, totalCost, totalproducts }}>
