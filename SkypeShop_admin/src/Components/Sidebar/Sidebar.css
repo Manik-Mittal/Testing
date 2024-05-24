@@ -21,10 +21,21 @@
     padding: 10px;
 }
 
-.add {
+.prodlist p {
+    position: relative;
+    top: -16px;
+}
+
+.adds {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    height: 60px;
+}
+
+.adds p {
+    position: relative;
+    top: -16px;
 }
 
 .list,
@@ -32,6 +43,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    height: 60px;
 }
 
 .list img {
@@ -46,7 +58,7 @@
     margin-left: -10px;
 }
 
-.conatiner {
+.conatiner-sidebar {
     position: relative;
     top: 50px
 }

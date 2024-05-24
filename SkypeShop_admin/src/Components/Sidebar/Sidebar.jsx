@@ -7,12 +7,12 @@ const Sidebar = () => {
     return (
         <div className='sidebar'>
 
-            <div className="conatiner">
+            <div className="conatiner-sidebar">
 
                 <div className="addprod">
 
                     <Link to='/addproduct' style={{ textDecoration: 'none' }}>
-                        <div className="add">
+                        <div className="adds">
                             <img src={productcart}></img>
                             <p>Add Product</p>
                         </div>

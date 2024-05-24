@@ -9,14 +9,7 @@ import Golive from '../Components/GoLive/Golive'
 const Admin = () => {
     return (
         <div class='admin'>
-
-            
             <Sidebar />
-            <Routes>
-                <Route path='/addproduct' element={<AddProduct />}></Route>
-                <Route path='/listproduct' element={<ListProduct />}></Route>
-                <Route path='/live' element={<Golive />}></Route>
-            </Routes>
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './AddProduct.css'
 import upload from '../../assets/upload_area.svg'
+import Sidebar from '../Sidebar/Sidebar';
 const AddProduct = () => {
     const [image, setimage] = useState(false);
     const [productdetails, setproductdetails] = useState(
@@ -96,52 +97,59 @@ const AddProduct = () => {
 
 
     return (
-        <div className='addproduct'>
 
-            <div className="container">
-                <div className="title">
-                    <p>Product Name</p>
-                    <input type='text' name='name' placeholder='Enter Product name' onChange={handlename}></input>
-                </div>
-
-                <div className="price">
-                    <div className="ptitle1">
-                        <p>Old Price</p>
-                        <input type='text' name='old_price' placeholder='Enter Product Price' onChange={handleop}></input>
-                    </div>
-                    <div className="ptitle2">
-                        <p>New Price</p>
-                        <input type='text' name='new_price' placeholder='Enter Product Offer Price' onChange={handlenp}></input>
-                    </div>
-                </div>
-
-
-
-                <div className="prodcat">
-                    <p>Product Category</p>
-                    <select name="category" value={productdetails.category} onChange={handlecat}>
-                        <option value="women">Women</option>
-                        <option value="men " >Men</option>
-                        <option value="kids" >Kids</option>
-                    </select>
-                </div>
-
-                <div className="imgupload">
-                    <label for='imagefile'>
-                        <img src={uploadedimg} alt='srry' className='uploadedimg'></img>
-                    </label>
-                    <input type='file' name='product' id='imagefile' hidden onChange={imagehandler}></input>
-                </div>
-
-
-                <div className="prodbutton">
-                    <button onClick={() => { buthandler() }}>Add product</button>
-                </div>
+        <div className="main-container">
+            <div className="sidebar">
+                <Sidebar></Sidebar>
             </div>
+            <div className='addproduct'>
+
+                <div className="container">
+                    <div className="title">
+                        <p>Product Name</p>
+                        <input type='text' name='name' placeholder='Enter Product name' onChange={handlename}></input>
+                    </div>
+
+                    <div className="price">
+                        <div className="ptitle1">
+                            <p>Old Price</p>
+                            <input type='text' name='old_price' placeholder='Enter Product Price' onChange={handleop}></input>
+                        </div>
+                        <div className="ptitle2">
+                            <p>New Price</p>
+                            <input type='text' name='new_price' placeholder='Enter Product Offer Price' onChange={handlenp}></input>
+                        </div>
+                    </div>
 
 
 
-        </div >
+                    <div className="prodcat">
+                        <p>Product Category</p>
+                        <select name="category" value={productdetails.category} onChange={handlecat}>
+                            <option value="women">Women</option>
+                            <option value="men " >Men</option>
+                            <option value="kids" >Kids</option>
+                        </select>
+                    </div>
+
+                    <div className="imgupload">
+                        <label for='imagefile'>
+                            <img src={uploadedimg} alt='srry' className='uploadedimg'></img>
+                        </label>
+                        <input type='file' name='product' id='imagefile' hidden onChange={imagehandler}></input>
+                    </div>
+
+
+                    <div className="prodbutton">
+                        <button onClick={() => { buthandler() }}>Add product</button>
+                    </div>
+                </div>
+
+
+
+            </div >
+        </div>
+
     )
 }
 

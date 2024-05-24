@@ -1,17 +1,19 @@
 import React from 'react'
 import './Navbar.css'
-import navlogo from '../../assets/nav-logo.svg'
+import navlogo from '../../assets/logo.png'
 import profilelogo from '../../assets/nav-profile.svg'
+import { Routes, Route, BrowserRouter, Link } from 'react-router-dom'
+
 const Navbar = () => {
     return (
         <div className='navcont'>
             <div className='navbar'>
                 <div className="images">
+
                     <div className="img1">
-                        <img src={navlogo}></img>
-                    </div>
-                    <div className="img2">
-                        <img src={profilelogo}></img>
+                        <Link to='/'>
+                            <img src={navlogo}></img>
+                        </Link>
                     </div>
 
                 </div>

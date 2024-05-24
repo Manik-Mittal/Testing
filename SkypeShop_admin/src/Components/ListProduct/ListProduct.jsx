@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './ListProduct.css'
 import cross from '../../assets/cross_icon.png'
+import Sidebar from '../Sidebar/Sidebar'
 const ListProduct = () => {
 
     const [Products, setproducts] = useState([]);
@@ -51,40 +52,47 @@ const ListProduct = () => {
     console.log(Products, 1)
 
     return (
-        <div className='listproduct'>
-            <h1>All Product Lists</h1>
-
-            <div className="prodlist">
-                <p> Product</p>
-                <p> Title</p>
-                <p> Old price</p>
-                <p> New Price</p>
-                <p> Category</p>
-                <p> Remove</p>
+        <div className="main-container">
+            <div className="sidebar">
+                <Sidebar></Sidebar>
             </div>
-            <hr></hr>
+            <div className='listproduct'>
+                <h1>All Product Lists</h1>
 
-            {Products.map((product, index) => {
-                return <div key={index} className="prodlist">
-                    <div className="lpimg1">
-                        <img src={product.image} alt='' />
-                    </div>
-
-                    <p>{product.name}</p>
-                    <p>{product.old_price}</p>
-                    <p>{product.new_price}</p>
-                    <p>{product.category}</p>
-
-                    <div className="lpimg2">
-                        <img src={cross} alt='' onClick={() => { deleteproduct(product.id) }} />
-                    </div>
-
+                <div className="prodlist">
+                    <p> Product</p>
+                    <p> Title</p>
+                    <p> Old price</p>
+                    <p> New Price</p>
+                    <p> Category</p>
+                    <p> Remove</p>
                 </div>
+                <hr></hr>
 
-            })}
+                {Products.map((product, index) => {
+                    return <div key={index} className="prodlist">
+                        <div className="lpimg1">
+                            <img src={product.image} alt='' />
+                        </div>
+
+                        <p>{product.name}</p>
+                        <p>{product.old_price}</p>
+                        <p>{product.new_price}</p>
+                        <p>{product.category}</p>
+
+                        <div className="lpimg2">
+                            <img src={cross} alt='' onClick={() => { deleteproduct(product.id) }} />
+                        </div>
+
+                    </div>
+
+                })}
 
 
+            </div>
         </div>
+
+
     )
 }
 

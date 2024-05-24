@@ -3,6 +3,11 @@
     width: 120px;
 }
 
+.main-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .polltitles {
     margin-bottom: 30px;
 }
@@ -12,6 +17,7 @@
     width: 70%;
     margin-left: 50px;
     margin-top: 50px;
+    margin-right: 80px;
 }
 
 .container {
