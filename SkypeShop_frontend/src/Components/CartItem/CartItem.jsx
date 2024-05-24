@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import remove_icon from '../Assets/cart_cross_icon.png'
 
 const CartItem = () => {
-    const { all_products, cartItem, addTocart, removeFromcart, totalCost } = useContext(ShopContext)
+    const { products, cartItem, addTocart, removeFromcart, totalCost } = useContext(ShopContext)
 
     return (
         <div className='cartitem'>
@@ -21,7 +21,7 @@ const CartItem = () => {
             </div>
             <hr />
 
-            {all_products.map((val, index) => {
+            {products.map((val, index) => {
                 if (cartItem[val.id] > 0) {
                     return <div>
                         <div className='item-desc'>

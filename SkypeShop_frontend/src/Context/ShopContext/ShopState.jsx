@@ -4,9 +4,25 @@ import all_products from '../../Components/Assets/all_product'
 
 const ShopState = (props) => {
 
+    const fetchallproducts = async () => {
+        await fetch('https://skypeshop.onrender.com').then((response) => {
+            if (!response) {
+                throw new Error('Failed to fetch newcollection');
+            }
+            return response.json();
+        }).then((data) => {
+            let newprods = { ...products };
+            newprods = data
+            setproducts(data.products)
+            console.log(products)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
     const getcart = async (token) => {
         console.log(token)
-        await fetch('http://localhost:5000/getcartitems', {
+        await fetch('https://skypeshop.onrender.com/getcartitems', {
             method: 'POST',
             headers: {
                 Accept: 'application/form-data',
@@ -41,7 +57,7 @@ const ShopState = (props) => {
     }
 
 
-
+    const [products, setproducts] = useState([])
     const [cartItem, setcart] = useState({});
 
     console.log(cartItem)
@@ -139,10 +155,11 @@ const ShopState = (props) => {
 
     useEffect(() => {
         getDefualtCart();
+        fetchallproducts();
     }, [])
 
     return (
-        <ShopContext.Provider value={{ all_products, cartItem, addTocart, removeFromcart, totalCost, totalproducts }}>
+        <ShopContext.Provider value={{ products, cartItem, addTocart, removeFromcart, totalCost, totalproducts }}>
             {props.children}
         </ShopContext.Provider>
     )
