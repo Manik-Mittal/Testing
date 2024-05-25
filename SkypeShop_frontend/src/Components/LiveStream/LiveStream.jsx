@@ -9,7 +9,7 @@ const LiveStream = () => {
 
 
     const alllivestreams = async () => {
-        await fetch('http://localhost:5000/livestreams').then((Response) => {
+        await fetch('https://skypeshop.onrender.com/livestreams').then((Response) => {
             if (!Response.ok) {
                 throw new Error("Unable to fetch livestreams")
             }
@@ -40,7 +40,7 @@ const LiveStream = () => {
         console.log(Number(room))
 
 
-        await fetch('http://localhost:5000/goinlive', {
+        await fetch('https://skypeshop.onrender.com/goinlive', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -59,7 +59,7 @@ const LiveStream = () => {
         })
 
 
-        window.location = `http://127.0.0.1:5502/lobby.html`
+        window.location = `https://6651c7c6faf7513bbd1b3d51--stellar-torrone-79097a.netlify.app/`
 
     }
     useEffect(() => {

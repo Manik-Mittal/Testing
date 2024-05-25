@@ -43,7 +43,7 @@ const Golive = () => {
         let formData = new FormData()
         formData.append('product', image)
 
-        await fetch('http://localhost:5000/upload', {
+        await fetch('https://skypeshop.onrender.com/upload', {
             method: 'POST',
             body: formData
 
@@ -60,7 +60,7 @@ const Golive = () => {
 
         let id;
 
-        await fetch('http://localhost:5000/postlive', {
+        await fetch('https://skypeshop.onrender.com/postlive', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -89,7 +89,7 @@ const Golive = () => {
         for (let i = 1; i <= 5; i++)options[i] = 0;
         console.log(options)
 
-        await fetch('http://localhost:5000/polloptions', {
+        await fetch('https://skypeshop.onrender.com/polloptions', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -135,7 +135,7 @@ const Golive = () => {
                 <div className="container">
 
                     <div className="prodbutton">
-                        <a href='http://127.0.0.1:5502/adminlobby.html'><button>Create Room</button></a>
+                        <a href='https://6651c74b30bad911f2e619a0--stalwart-centaur-9a781b.netlify.app/'><button>Create Room</button></a>
                     </div>
 
                     <div className="title">

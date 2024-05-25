@@ -61,7 +61,7 @@ const AddProduct = () => {
         // console.log(obj)
 
 
-        await fetch('http://localhost:5000/upload', {
+        await fetch('https://skypeshop.onrender.com/upload', {
             method: 'POST',
             body: formData
 
@@ -77,7 +77,7 @@ const AddProduct = () => {
         productdetails.image = resdata.image_url;  //will execute only after response from server is received
         console.log(productdetails);
 
-        await fetch('http://localhost:5000/addproduct', {
+        await fetch('https://skypeshop.onrender.com/addproduct', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
