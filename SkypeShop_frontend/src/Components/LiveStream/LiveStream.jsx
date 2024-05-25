@@ -59,7 +59,7 @@ const LiveStream = () => {
         })
 
 
-        window.location = `https://6651c7c6faf7513bbd1b3d51--stellar-torrone-79097a.netlify.app/`
+        window.location = `https://legendary-bavarois-07d8fa.netlify.app/`
 
     }
     useEffect(() => {
