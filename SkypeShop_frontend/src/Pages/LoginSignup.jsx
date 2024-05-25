@@ -19,11 +19,10 @@ const LoginSignup = () => {
         if (!formdata.email || !formdata.password) {
             return;
         }
-        if (!formdata.email.includes("@") && !formdata.email.includes(".com")) {
+        if (!formdata.email.includes("@") || !formdata.email.includes(".com")) {
             alert('Enter valid email');
             return;
         }
-
 
         let token;
         await fetch('https://skypeshop.onrender.com/login', {
@@ -58,7 +57,7 @@ const LoginSignup = () => {
         if (!formdata.name || !formdata.email || !formdata.password) {
             return;
         }
-        if (!formdata.email.includes("@") && !formdata.email.includes(".com")) {
+        if (!formdata.email.includes("@") || !formdata.email.includes(".com")) {
             alert('Enter valid email');
             return;
         }
