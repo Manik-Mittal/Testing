@@ -58,6 +58,7 @@
     padding-left: 60px;
     border-radius: 10px;
     font-size: 20px;
+    margin-left: -1px
 }
 
 .prodbutton button:hover {

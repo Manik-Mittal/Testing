@@ -79,13 +79,13 @@ label {
 }
 
 .loginarea {
-    width: 20%;
+    width: 40%;
     height: 750px;
 }
 
 .loginimg img {
     height: 800px;
-    width: 1200px;
+    width: 600px;
 }
 
 @media screen and (max-width: 1700px) {
