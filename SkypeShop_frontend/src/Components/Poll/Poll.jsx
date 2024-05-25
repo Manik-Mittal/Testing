@@ -24,7 +24,7 @@ const Poll = () => {
     const fetchoption = async () => {
 
         //fecth options from database
-        const product = await fetch('http://localhost:5000/getproductforpoll', {
+        const product = await fetch('https://skypeshop.onrender.com/getproductforpoll', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -47,7 +47,7 @@ const Poll = () => {
 
 
         //to fecth the cnt of options from database
-        await fetch('http://localhost:5000/getpolloptions', {
+        await fetch('https://skypeshop.onrender.com/getpolloptions', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -80,7 +80,7 @@ const Poll = () => {
             newvote[optno] = 1;
             setvote(newvote);
 
-            await fetch('http://localhost:5000/updatepolloptions', {
+            await fetch('https://skypeshop.onrender.com/updatepolloptions', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
