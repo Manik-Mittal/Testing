@@ -16,7 +16,10 @@ const LoginSignup = () => {
 
 
     const login = async () => {
-        console.log("login", formdata)
+        if (!formdata.email || !formdata.password) {
+            alert('Fill all the details to login')
+            return;
+        }
         let token;
         await fetch('https://skypeshop.onrender.com/login', {
             method: 'POST',
@@ -46,8 +49,13 @@ const LoginSignup = () => {
         }
     }
     const signup = async () => {
-        let token;
+
+        if (!formdata.name || !formdata.email || !formdata.password) {
+            alert('Fill all the details to login')
+            return;
+        }
         console.log("signup", formdata)
+        let token;
         await fetch('https://skypeshop.onrender.com/signup', {
             method: 'POST',
             headers: {
