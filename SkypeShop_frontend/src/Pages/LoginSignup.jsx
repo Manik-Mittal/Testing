@@ -17,9 +17,14 @@ const LoginSignup = () => {
 
     const login = async () => {
         if (!formdata.email || !formdata.password) {
-            alert('Fill all the details to login')
             return;
         }
+        if (!formdata.email.includes("@") && !formdata.email.includes(".com")) {
+            alert('Enter valid email');
+            return;
+        }
+
+
         let token;
         await fetch('https://skypeshop.onrender.com/login', {
             method: 'POST',
@@ -51,9 +56,13 @@ const LoginSignup = () => {
     const signup = async () => {
 
         if (!formdata.name || !formdata.email || !formdata.password) {
-            alert('Fill all the details to login')
             return;
         }
+        if (!formdata.email.includes("@") && !formdata.email.includes(".com")) {
+            alert('Enter valid email');
+            return;
+        }
+
         console.log("signup", formdata)
         let token;
         await fetch('https://skypeshop.onrender.com/signup', {
@@ -86,37 +95,39 @@ const LoginSignup = () => {
 
 
     return (
-        <div className='login'>
+        <form>
+            <div className='login'>
 
 
-            <div className="loginimg">
-                <img src={loginimg}></img>
-            </div>
-            <div className="loginarea">
-                <h1>{state}</h1>
-                <div className="form-info">
-                    {state === "Signup" ? <input name="name" value={formdata.name} id='name' placeholder='Your Name' required onChange={formhandler}></input> : <input id='name' value={formdata.name} type='hidden' placeholder='Your Name' required onChange={formhandler}></input>}
-                    <input name="email" type='email' value={formdata.email} id='email' placeholder='Email Address' required onChange={formhandler}></input>
-                    <input minlength='8' name="password" value={formdata.password} id='password' placeholder='Password' required onChange={formhandler}></input>
-                    <button onClick={() => { state === "Login" ? login() : signup() }}>Continue</button>
+                <div className="loginimg">
+                    <img src={loginimg}></img>
                 </div>
+                <div className="loginarea">
+                    <h1>{state}</h1>
+                    <div className="form-info">
+                        {state === "Signup" ? <input name="name" value={formdata.name} id='name' placeholder='Your Name' required onChange={formhandler}></input> : <input id='name' value={formdata.name} type='hidden' placeholder='Your Name' required onChange={formhandler}></input>}
+                        <input name="email" type='email' value={formdata.email} id='email' placeholder='Email Address' required onChange={formhandler}></input>
+                        <input minlength='8' name="password" value={formdata.password} id='password' placeholder='Password' required onChange={formhandler}></input>
+                        <button onClick={() => { state === "Login" ? login() : signup() }}>Continue</button>
+                    </div>
 
-                <div className="checks">
+                    <div className="checks">
 
-                    {state === "Login" ? <p>
-                        Not yet registered ? Create Account  <span style={{ cursor: 'pointer' }} onClick={() => { setstate("Signup") }}>  Signup here </span>
-                    </p> : <p>
-                        Already have an account here ? <span style={{ cursor: 'pointer' }} onClick={() => { setstate("Login") }}>   Login here</span>
-                    </p>
-                    }
+                        {state === "Login" ? <p>
+                            Not yet registered ? Create Account  <span style={{ cursor: 'pointer' }} onClick={() => { setstate("Signup") }}>  Signup here </span>
+                        </p> : <p>
+                            Already have an account here ? <span style={{ cursor: 'pointer' }} onClick={() => { setstate("Login") }}>   Login here</span>
+                        </p>
+                        }
 
 
-                    <input type="checkbox" id="terms" required />
-                    <label for="terms">I agree to the terms and conditions</label>
+                        <input type="checkbox" id="terms" required />
+                        <label for="terms">I agree to the terms and conditions</label>
+                    </div>
+
                 </div>
-
-            </div>
-        </div >
+            </div >
+        </form>
     )
 }
 
