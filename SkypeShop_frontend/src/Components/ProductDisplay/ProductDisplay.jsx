@@ -8,7 +8,6 @@ import { ShopContext } from '../../Context/ShopContext/ShopContext'
 const ProductDisplay = (props) => {
     const { addTocart } = useContext(ShopContext);
     const helper = (id) => {
-        alert('Successfully Added in Cart')
         addTocart(id)
     }
     // console.log(useContext(ShopContext, 1));

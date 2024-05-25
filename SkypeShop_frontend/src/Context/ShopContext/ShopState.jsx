@@ -87,6 +87,7 @@ const ShopState = (props) => {
                 const newCartItem = { ...cartItem };
                 newCartItem[id] = cartItem[id] + 1;
                 setcart(newCartItem);
+                alert('Successfully Added in Cart')
             }
 
         }).catch((err) => {
