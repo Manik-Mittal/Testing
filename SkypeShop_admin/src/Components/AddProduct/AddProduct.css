@@ -100,10 +100,16 @@
     color: white;
 }
 
-.catbut:hover {
+.catbutselect span {
+    position: relative;
+    bottom: 8px;
+
+}
+
+/* .catbut:hover {
     background-color: rgb(25, 0, 255);
     color: white;
-}
+} */
 
 .catbut span {
     position: relative;
