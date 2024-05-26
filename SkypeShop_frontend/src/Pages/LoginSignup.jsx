@@ -106,7 +106,7 @@ const LoginSignup = () => {
                     <div className="form-info">
                         {state === "Signup" ? <input name="name" value={formdata.name} id='name' placeholder='Your Name' required onChange={formhandler}></input> : <input id='name' value={formdata.name} type='hidden' placeholder='Your Name' required onChange={formhandler}></input>}
                         <input name="email" type='email' value={formdata.email} id='email' placeholder='Email Address' required onChange={formhandler}></input>
-                        <input minlength='8' name="password" value={formdata.password} id='password' placeholder='Password' required onChange={formhandler}></input>
+                        <input name="password" value={formdata.password} id='password' placeholder='Password' required onChange={formhandler}></input>
                         <button onClick={() => { state === "Login" ? login() : signup() }}>Continue</button>
                     </div>
 
