@@ -59,7 +59,7 @@ const LiveStream = () => {
         })
 
 
-        window.location = `https://66528b7543d1d245c37aa122--cerulean-kashata-374ab4.netlify.app/`
+        window.location = `https://6652934c887786ecc8eb1087--superb-mermaid-a3466b.netlify.app/`
 
     }
     useEffect(() => {
