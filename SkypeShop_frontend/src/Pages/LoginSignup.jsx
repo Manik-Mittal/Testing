@@ -119,9 +119,6 @@ const LoginSignup = () => {
                         </p>
                         }
 
-
-                        <input type="checkbox" id="terms" required />
-                        <label for="terms">I agree to the terms and conditions</label>
                     </div>
 
                 </div>
