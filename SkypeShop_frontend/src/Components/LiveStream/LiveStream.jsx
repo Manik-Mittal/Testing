@@ -47,7 +47,7 @@ const LiveStream = () => {
             return;
         }
 
-        await fetch('http://localhost:5000/getuser', {
+        await fetch('https://skypeshop.onrender.com/getuser', {
             method: 'POST',
             headers: {
                 Accept: 'application/form-data',
@@ -71,7 +71,7 @@ const LiveStream = () => {
         console.log(userlivedetails, 2)
 
 
-        await fetch('http://localhost:5000/goinlive', {
+        await fetch('https://skypeshop.onrender.com/goinlive', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -90,7 +90,7 @@ const LiveStream = () => {
         })
 
 
-        // window.location = `https://6652934c887786ecc8eb1087--superb-mermaid-a3466b.netlify.app/`
+        window.location = `https://6653201a165fa1619fe8506f--vermillion-shortbread-f6b109.netlify.app/`
 
     }
     useEffect(() => {
