@@ -11,6 +11,10 @@ const CartItem = () => {
     const paymenthandler = async (e) => {
         let cost = totalCost();
         console.log(cost)
+        if (cost < 500) {
+            alert('Atleast 500 Payment')
+            return;
+        }
         console.log(typeof (cost))
         let orders;
         let order = {
@@ -18,7 +22,7 @@ const CartItem = () => {
             currency: "INR",
             receipt: "SkypeShop"
         }
-        const response = await fetch('https://skypeshop.onrender.com/order', {
+        const response = await fetch('http://localhost:5000/order', {
             method: 'POST',
             headers: {
                 Accept: 'application/form-data',
@@ -41,7 +45,7 @@ const CartItem = () => {
 
         var options = {
             "key": "rzp_test_0UsndzeVUiKnEu", // Enter the Key ID generated from the Dashboard
-            cost, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "amount": cost, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
             "currency": "INR",
             "name": "SkypeShop",
             "description": "Test Transaction",
