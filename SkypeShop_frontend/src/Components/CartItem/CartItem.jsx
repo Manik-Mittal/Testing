@@ -18,7 +18,7 @@ const CartItem = () => {
             currency: "INR",
             receipt: "SkypeShop"
         }
-        const response = await fetch('http://localhost:5000/order', {
+        const response = await fetch('https://skypeshop.onrender.com/order', {
             method: 'POST',
             headers: {
                 Accept: 'application/form-data',
