@@ -16,7 +16,7 @@ require('dotenv').config();
 
 const port = process.env.PORT || 5000
 
-const allowedOrigins = ['https://skype-shop.vercel.app', 'http://localhost:3000', 'http://localhost:8000', 'https://skypeshop-1.onrender.com', 'https://66528b7543d1d245c37aa122--cerulean-kashata-374ab4.netlify.app', 'https://66528b5e39c2b0e24dabbdef--inspiring-zuccutto-cbb4b9.netlify.app'];
+const allowedOrigins = ['https://skype-shop.vercel.app', 'http://localhost:3000', 'http://localhost:8000', 'https://skypeshop-1.onrender.com', 'https://66528b7543d1d245c37aa122--cerulean-kashata-374ab4.netlify.app', 'https://66528b5e39c2b0e24dabbdef--inspiring-zuccutto-cbb4b9.netlify.app', 'http://127.0.0.1:5500'];
 
 app.use(
     cors({
