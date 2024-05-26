@@ -11,6 +11,7 @@ const LiveStream = require('./Model/LiveStream')
 const UserInLive = require('./Model/UserInLive')
 const UserLogin = require('./Model/UserLogin')
 const Polloption = require('./Model/Polloption')
+const Razorpay = require('razorpay')
 
 require('dotenv').config();
 
@@ -39,8 +40,7 @@ app.options('*', cors({
 }));
 
 app.use(express.json())
-
-
+app.use(express.urlencoded({ extended: false }))
 //IMAGE STORAGE ENGINE
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -54,6 +54,32 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 app.use('/images', express.static('./Upload/images'))
+
+
+//api to handle orders and payments
+app.post('/order', async (req, res) => {
+
+    try {
+        const razorpay = new Razorpay({
+            key_id: process.env.RAZORPAY_KEY_ID,
+            key_secret: process.env.RAZORPAY_SECRET
+        });
+
+        const options = req.body
+
+        const order = await razorpay.orders.create(options)
+        console.log(order)
+        if (!order) {
+            res.status(500).send("error")
+        }
+        res.status(200).json(order)
+    }
+    catch (err) {
+        console.log(err)
+        res.status(500).send("error")
+    }
+})
+
 
 //api to upload image
 app.post('/upload', upload.single('product'), (req, res) => {

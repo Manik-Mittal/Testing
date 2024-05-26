@@ -132,7 +132,7 @@ const ShopState = (props) => {
     const totalCost = () => {
         let total = 0;
         {
-            all_products.map((val, index) => {
+            products.map((val, index) => {
                 if (cartItem[val.id] > 0) {
                     total = total + cartItem[val.id] * val.new_price
                 }
@@ -144,7 +144,7 @@ const ShopState = (props) => {
     const totalproducts = () => {
         let total = 0;
         {
-            all_products.map((val, index) => {
+            products.map((val, index) => {
                 if (cartItem[val.id] > 0) {
                     total = total + cartItem[val.id]
                 }
