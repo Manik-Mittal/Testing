@@ -13,6 +13,10 @@ const UserInLive = new mongoose.Schema({
     room: {
         type: Number,
         require: true,
+    },
+    email: {
+        type: String,
+        require: true,
     }
 })
 

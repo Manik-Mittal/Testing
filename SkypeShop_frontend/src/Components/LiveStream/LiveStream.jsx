@@ -25,6 +25,7 @@ const LiveStream = () => {
         const userlivedetails = {
             livename: url,
             isinsidelive: false,
+            email: "",
             room: 0
         }
 
@@ -40,7 +41,37 @@ const LiveStream = () => {
         console.log(Number(room))
 
 
-        await fetch('https://skypeshop.onrender.com/goinlive', {
+        let token = localStorage.getItem('auth-token')
+        if (!token) {
+            alert('Kindly login/signup to join the livestream')
+            return;
+        }
+
+        await fetch('http://localhost:5000/getuser', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/form-data',
+                'Content-type': 'application/json',
+                'auth-token': `${localStorage.getItem('auth-token')}`
+            }
+        }).then((response) => {
+            if (!response) {
+                throw Error("Unable to fetch user")
+            }
+            return response.json()
+        }).then((data) => {
+
+            userlivedetails.email = data
+            console.log(userlivedetails, 1)
+
+        }).catch((err) => {
+            console.log(err)
+        })
+
+        console.log(userlivedetails, 2)
+
+
+        await fetch('http://localhost:5000/goinlive', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -53,13 +84,13 @@ const LiveStream = () => {
             }
             return response.json()
         }).then((data) => {
-            console.log(data)
+            console.log(data, 3)
         }).catch((err) => {
             console.log(err)
         })
 
 
-        window.location = `https://6652934c887786ecc8eb1087--superb-mermaid-a3466b.netlify.app/`
+        // window.location = `https://6652934c887786ecc8eb1087--superb-mermaid-a3466b.netlify.app/`
 
     }
     useEffect(() => {

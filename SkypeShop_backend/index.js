@@ -100,18 +100,21 @@ app.post('/postlive', async (req, res) => {
 //api to post the details of user wanting to join live stream 
 app.post('/goinlive', async (req, res) => {
     const useinlive = await UserInLive.create(req.body)
+    //console.log(useinlive, "*")
     res.status(201).json({ useinlive })
 })
 
 //api to get all those user who are not in a live yet
-app.get('/usersinlive', async (req, res) => {
-    const users = await UserInLive.find({ isinsidelive: false });
+app.post('/searchuserinlive', async (req, res) => {
+    console.log(req.body)
+    const users = await UserInLive.find({ email: req.body.email });
     res.status(201).json({ users })
 })
 
 //api to delete users once they are inside a live 
 app.post('/deleteuser', async (req, res) => {
-    await UserInLive.findOneAndDelete({ id: req.body.id })
+    console.log(req.body.email, "in deleteuser")
+    await UserInLive.findOneAndDelete({ email: req.body.email })
     res.status(201).json({ msg: "Deletd successfully bro" })
 })
 
@@ -229,6 +232,12 @@ app.post('/getcartitems', authenticateuser, async (req, res) => {
     res.status(200).json(user[0].cartdata)
 })
 
+//api to get user details logged in my website
+app.post('/getuser', authenticateuser, async (req, res) => {
+    const user = await UserLogin.find({ _id: req.user.id })
+    console.log(user[0].email, "**")
+    res.status(200).json(user[0].email)
+})
 //api to getthe product for polling  entered by admin 
 app.post('/getproductforpoll', async (req, res) => {
 
