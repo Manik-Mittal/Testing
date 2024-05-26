@@ -85,3 +85,118 @@
     }
 
 }
+
+/* For window width 1700px */
+@media (max-width: 1700px) {
+    .stream-container {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        margin-left: 100px;
+        gap: 20px;
+    }
+
+    .stream-card-image img,
+    .stream-card-text {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .stream-card-text {
+        margin: 0 auto;
+        background: rgb(214, 210, 210);
+        height: 120px;
+        position: relative;
+        right: auto;
+    }
+}
+
+/* For window width 1600px */
+@media (max-width: 1600px) {
+    .stream-container {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        margin-left: 80px;
+        gap: 20px;
+    }
+
+    .stream-card-image img,
+    .stream-card-text {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .stream-card-text {
+        margin: 0 auto;
+        background: rgb(214, 210, 210);
+        height: 120px;
+        position: relative;
+        right: auto;
+    }
+}
+
+/* For window width 1500px */
+@media (max-width: 1500px) {
+    .stream-container {
+        grid-template-columns: 1fr 1fr 1fr;
+        margin-left: 50px;
+        gap: 20px;
+    }
+
+    .stream-card-image img,
+    .stream-card-text {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .stream-card-text {
+        margin: 0 auto;
+        background: rgb(214, 210, 210);
+        height: 120px;
+        position: relative;
+        right: auto;
+    }
+}
+
+/* For window width 1200px */
+@media (max-width: 1200px) {
+    .stream-container {
+        grid-template-columns: 1fr 1fr 1fr;
+        margin-left: 30px;
+        gap: 15px;
+    }
+
+    .stream-card-image img,
+    .stream-card-text {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .stream-card-text {
+        margin: 0 auto;
+        background: rgb(214, 210, 210);
+        height: 120px;
+        position: relative;
+        right: auto;
+    }
+}
+
+/* For window width 1000px */
+@media (max-width: 1000px) {
+    .stream-container {
+        grid-template-columns: 1fr 1fr;
+        margin-left: 20px;
+        gap: 10px;
+    }
+
+    .stream-card-image img,
+    .stream-card-text {
+        width: 100%;
+        max-width: 260px;
+    }
+
+    .stream-card-text {
+        margin: 0 auto;
+        background: rgb(214, 210, 210);
+        height: 120px;
+        position: relative;
+        right: auto;
+    }
+}
