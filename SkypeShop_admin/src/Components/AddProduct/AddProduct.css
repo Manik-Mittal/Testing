@@ -46,6 +46,11 @@
 
 .prodcat {
     margin-bottom: 50px;
+
+}
+
+.prodcat button {
+    margin-left: 5px;
 }
 
 .prodcat select {
@@ -70,5 +75,38 @@
 
     color: white;
     background-color: blue;
+
+}
+
+.catbut {
+    padding: 30px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    height: 20px;
+
+    background-color: none;
+}
+
+.catbutselect {
+    padding: 30px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+    height: 20px;
+    background-color: rgb(25, 0, 255);
+    color: white;
+}
+
+.catbut:hover {
+    background-color: rgb(25, 0, 255);
+    color: white;
+}
+
+.catbut span {
+    position: relative;
+    bottom: 8px;
 
 }

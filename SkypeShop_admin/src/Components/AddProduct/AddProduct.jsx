@@ -4,6 +4,7 @@ import upload from '../../assets/upload_area.svg'
 import Sidebar from '../Sidebar/Sidebar';
 const AddProduct = () => {
     const [image, setimage] = useState(false);
+
     const [productdetails, setproductdetails] = useState(
         {
             name: "",
@@ -43,9 +44,14 @@ const AddProduct = () => {
     const handlenp = (e) => {
         setproductdetails({ ...productdetails, new_price: e.target.value });
     }
-    const handlecat = (e) => {
-        setproductdetails({ ...productdetails, category: e.target.value });
-    }
+    const categoryhandler = (category) => {
+        let newprod = productdetails;
+        newprod.category = category
+
+        setproductdetails(newprod);
+        console.log(productdetails.category)
+
+    };
 
     const buthandler = async () => {
 
@@ -53,15 +59,7 @@ const AddProduct = () => {
         let formData = new FormData()
         formData.append('product', image)
 
-        // let obj = {}
-        // for (const [key, value] of formData.entries()) {
-        //     obj[key] = value;
-        // }
-
-        // console.log(obj)
-
-
-        await fetch('https://skypeshop.onrender.com/upload', {
+        await fetch('http://localhost:5000/upload', {
             method: 'POST',
             body: formData
 
@@ -77,7 +75,7 @@ const AddProduct = () => {
         productdetails.image = resdata.image_url;  //will execute only after response from server is received
         console.log(productdetails);
 
-        await fetch('https://skypeshop.onrender.com/addproduct', {
+        await fetch('http://localhost:5000/addproduct', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -125,11 +123,10 @@ const AddProduct = () => {
 
                     <div className="prodcat">
                         <p>Product Category</p>
-                        <select name="category" value={productdetails.category} onChange={handlecat}>
-                            <option value="women">Women</option>
-                            <option value="men" >Men</option>
-                            <option value="kids" >Kids</option>
-                        </select>
+                        {productdetails.category == "men" ? <button className='catbutselect' onClick={() => categoryhandler("men")}><span>Men</span></button> : <button className='catbut' onClick={() => categoryhandler("men")}><span>Men</span></button>}
+                        {productdetails.category == "women" ? <button className='catbutselect' onClick={() => categoryhandler("women")}><span>Women</span></button> : <button className='catbut' onClick={() => categoryhandler("women")}><span>Women</span></button>}
+                        {productdetails.category == "kids" ? <button className='catbutselect' onClick={() => categoryhandler("kids")}><span>Kids</span></button> : <button className='catbut' onClick={() => categoryhandler("kids")}><span>Kids</span></button>}
+
                     </div>
 
                     <div className="imgupload">
