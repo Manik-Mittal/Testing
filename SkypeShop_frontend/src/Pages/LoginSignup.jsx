@@ -201,7 +201,6 @@ const LoginSignup = () => {
             return;
         }
 
-        console.log("signup", formdata)
         let token;
         await fetch('https://skypeshop.onrender.com/signup', {
             method: 'POST',
@@ -217,19 +216,16 @@ const LoginSignup = () => {
             return response.json()
         }).then((data) => {
             token = data.token
-            console.log(data)
         }).catch((err) => {
             console.log(err)
         })
 
         if (token) {
             localStorage.setItem('auth-token', token)
-            console.log("no duppi")
             window.location.replace("/");
         }
         else {
             alert("User already exists, please retry ")
-            console.log("duppi")
             window.location.replace("/loginSignup");
         }
     }
