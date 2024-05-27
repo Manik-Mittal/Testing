@@ -90,7 +90,7 @@ const LiveStream = () => {
         })
 
 
-        window.location = `https://6653201a165fa1619fe8506f--vermillion-shortbread-f6b109.netlify.app/`
+        window.location = `https://skype-shop-livestream.vercel.app/`
 
     }
     useEffect(() => {
