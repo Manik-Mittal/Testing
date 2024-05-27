@@ -134,7 +134,11 @@ app.post('/goinlive', async (req, res) => {
 app.post('/searchuserinlive', async (req, res) => {
     console.log(req.body)
     const users = await UserInLive.find({ email: req.body.email });
-    res.status(201).json({ users })
+
+    if (users.length == 0) {
+        return res.status(500).json({ msg: "err" })
+    }
+    return res.status(201).json({ users })
 })
 
 //api to delete users once they are inside a live 
