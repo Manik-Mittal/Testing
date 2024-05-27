@@ -15,7 +15,8 @@ const LoginSignup = () => {
     }
 
 
-    const login = async () => {
+    const login = async (e) => {
+        e.preventDefault()
         if (!formdata.email || !formdata.password) {
             return;
         }
@@ -25,6 +26,7 @@ const LoginSignup = () => {
         }
 
         let token;
+        let msg;
         await fetch('https://skypeshop.onrender.com/login', {
             method: 'POST',
             headers: {
@@ -39,6 +41,7 @@ const LoginSignup = () => {
             return response.json()
         }).then((data) => {
             token = data.token
+            msg = data.msg
             console.log(data)
         }).catch((err) => {
             console.log(err)
@@ -49,11 +52,11 @@ const LoginSignup = () => {
             window.location.replace("/");
         }
         else {
-            alert("Wrong password or email please retry")
+            alert(msg)
         }
     }
-    const signup = async () => {
-
+    const signup = async (e) => {
+        e.preventDefault();
         if (!formdata.name || !formdata.email || !formdata.password) {
             return;
         }
@@ -73,7 +76,7 @@ const LoginSignup = () => {
             body: JSON.stringify(formdata)
         }).then((response) => {
             if (!response) {
-                response.json({ msg: "ubale to post" })
+                response.json({ msg: "unable to post" })
             }
             return response.json()
         }).then((data) => {
@@ -85,10 +88,13 @@ const LoginSignup = () => {
 
         if (token) {
             localStorage.setItem('auth-token', token)
+            console.log("no duppi")
             window.location.replace("/");
         }
         else {
             alert("User already exits retry ")
+            console.log("duppi")
+            window.location.replace("/loginSignup");
         }
     }
 
@@ -107,7 +113,7 @@ const LoginSignup = () => {
                         {state === "Signup" ? <input name="name" value={formdata.name} id='name' placeholder='Your Name' required onChange={formhandler}></input> : <input id='name' value={formdata.name} type='hidden' placeholder='Your Name' required onChange={formhandler}></input>}
                         <input name="email" type='email' value={formdata.email} id='email' placeholder='Email Address' required onChange={formhandler}></input>
                         <input name="password" value={formdata.password} id='password' placeholder='Password' required onChange={formhandler}></input>
-                        <button onClick={() => { state === "Login" ? login() : signup() }}>Continue</button>
+                        <button onClick={(e) => { state === "Login" ? login(e) : signup(e) }}>Continue</button>
                     </div>
 
                     <div className="checks">

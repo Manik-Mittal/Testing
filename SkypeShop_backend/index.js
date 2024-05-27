@@ -152,6 +152,7 @@ app.post('/signup', async (req, res) => {
     const check = await UserLogin.find({ email: email })
 
     if (check.length > 0) {
+        console.log("duplicate", check)
         return res.status(400).json({ msg: "User already exists" })
     }
     let cart = {};
@@ -173,12 +174,14 @@ app.post('/signup', async (req, res) => {
     }
 
     const token = jwt.sign(data, 'secret_ecom')
-    res.json({ masg: "success", token })
+    res.json({ msg: "success", token })
 })
 
 //api for login endpoint 
 app.post('/login', async (req, res) => {
     const user = await UserLogin.find({ email: req.body.email })
+    console.log(req.body)
+    console.log(user)
 
     if (user.length == 0) {
         return res.status(400).json({ msg: "Please enter correct emailid" })
