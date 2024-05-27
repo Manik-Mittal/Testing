@@ -135,7 +135,7 @@ const Golive = () => {
                 <div className="container">
 
                     <div className="prodbutton">
-                        <a href='https://66528b5e39c2b0e24dabbdef--inspiring-zuccutto-cbb4b9.netlify.app/'><button>Create Room</button></a>
+                        <a href='https://skype-shop-admin-livestream.vercel.app/'><button>Create Room</button></a>
                     </div>
 
                     <div className="title">
