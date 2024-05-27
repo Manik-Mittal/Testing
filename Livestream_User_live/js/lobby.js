@@ -58,9 +58,9 @@ form.addEventListener('submit', (e) => {
             }).then((data) => {
                 console.log(data)
                 console.log(inviteCode)
-                // setTimeout(() => {
-                //     window.location = `room.html?room=${inviteCode}`
-                // }, 3000);
+                setTimeout(() => {
+                    window.location = `room.html?room=${inviteCode}`
+                }, 3000);
             }).catch((err) => {
                 console.log(err)
             })
