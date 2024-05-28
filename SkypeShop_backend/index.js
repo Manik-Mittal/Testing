@@ -11,7 +11,10 @@ const LiveStream = require('./Model/LiveStream')
 const UserInLive = require('./Model/UserInLive')
 const UserLogin = require('./Model/UserLogin')
 const Polloption = require('./Model/Polloption')
-const Razorpay = require('razorpay')
+const Razorpay = require('razorpay');
+const { cloudinaryConnect } = require('./cloudinary');
+const { uploadImageToCloudinary } = require('./media_upload');
+const { mediaDeleter } = require('./media_deleter');
 
 require('dotenv').config();
 
@@ -41,12 +44,17 @@ app.options('*', cors({
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+cloudinaryConnect();   //calling cloudiary connect to connect to clodinary
+
+
 //IMAGE STORAGE ENGINE
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './Upload/images')
     },
     filename: function (req, file, cb) {
+        filename = file.fieldname;
         cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
     }
 })
@@ -82,11 +90,22 @@ app.post('/order', async (req, res) => {
 
 
 //api to upload image
-app.post('/upload', upload.single('product'), (req, res) => {
-    res.json({
-        success: 1,
-        image_url: `https://skypeshop.onrender.com/images/${req.file.filename}`
-    })
+app.post('/upload', upload.single('product'), async (req, res) => {
+    try {
+        console.log(req.file.filename, 1)
+        console.log(`./Upload/images/${req.file}`)
+        const image = await uploadImageToCloudinary(`./Upload/images/${req.file.filename}`, process.env.Folder)
+        console.log(image)
+        res.json({
+            success: 1,
+            // image_url: `https://skypeshop.onrender.com/images/${req.file.filename}`
+            image_url: image.secure_url
+        })
+    }
+    catch (err) {
+        console.log(err)
+    }
+
 })
 
 //API to get product
@@ -356,7 +375,13 @@ app.post('/addproduct', async (req, res) => {
 
 //api to delete a document in database
 app.post('/removeproduct', async (req, res) => {
+    const prod = await Product.findOne({ id: req.body.id })
     await Product.findOneAndDelete({ id: req.body.id })
+
+    let publicid = prod.image.split('/').pop().split('.')[0]
+    console.log(publicid)
+    const response = await mediaDeleter(publicid)
+    console.log(response)
     res.json({ msg: "Deletd successfully bro" })
 })
 
