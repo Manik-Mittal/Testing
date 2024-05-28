@@ -11,6 +11,7 @@ const NewCollection = () => {
     const bringnewcollection = async () => {
         await fetch('https://skypeshop.onrender.com/newcollections').then((response) => {
             if (!response.ok) {
+                alert('Kindly wait few minutes for server being activated ')
                 throw new Error('Failed to fetch newcollection');
             }
             return response.json()
@@ -19,6 +20,7 @@ const NewCollection = () => {
             setnc(data.mycollection)
         }).catch((err) => {
             console.log(err)
+            alert('Kindly wait few minutes for server being activated ')
         })
     }
     useEffect(() => {
