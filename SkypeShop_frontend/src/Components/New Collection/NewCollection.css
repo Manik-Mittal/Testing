@@ -28,3 +28,36 @@
     gap: 30px;
     margin-left: 110px;
 }
+
+.loader {
+    margin-left: 800px;
+}
+
+
+@media (max-width: 1700px) {
+    .loader {
+        position: relative;
+        margin-left: 500px;
+    }
+}
+
+@media (max-width: 1500px) {
+    .loader {
+        position: relative;
+        margin-left: 550px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .loader {
+        position: relative;
+        margin-left: 500px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .loader {
+        position: relative;
+        margin-left: 400px;
+    }
+}

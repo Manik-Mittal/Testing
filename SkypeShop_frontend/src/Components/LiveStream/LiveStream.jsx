@@ -3,6 +3,7 @@ import './LiveStream.css'
 import { useState } from 'react'
 import { useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { Oval } from 'react-loader-spinner';
 const LiveStream = () => {
 
     const [live, setlive] = useState([]);
@@ -17,7 +18,10 @@ const LiveStream = () => {
         }).then((data) => {
             console.log(data)
             setlive(data.livestreams)
-        }).catch((err) => console.log(err))
+        }).catch((err) => {
+            console.log(err)
+            alert('Kindly wait few minutes for server to get activated ')
+        })
     }
 
     const registeruse = async (url, name) => {
@@ -106,7 +110,41 @@ const LiveStream = () => {
             </div>
 
             <div className="stream-container">
-                {live.map((val, index) => {
+
+                {live.length == 0 ?
+                    <div className="loader-live"><Oval
+                        height={80}
+                        width={80}
+                        radius={9}
+                        color="green"
+                        ariaLabel="loading"
+                        wrapperStyle={{}}
+                        wrapperClass={{}}
+                    /></div> :
+                    live.map((val, index) => {
+                        return <div className="stream-card-content">
+                            <div className="stream-card-image">
+
+                                <img src={val.image} onClick={() => { registeruse(val.url, val.name) }}></img>
+
+                            </div>
+                            <div className="stream-card-text">
+                                <span>{val.name}</span>
+                                <br></br>
+                                <span>${val.old_price}  ${val.new_price}</span>
+                                <br></br>
+                                <br></br>
+
+                                {!val.op1 && !val.op2 && !val.op3 && !val.op4 && !val.op5 ? <button hidden></button> : <Link to={`/poll/${val._id}`}><button className='pollbutton'>Live Polling</button></Link>}
+
+
+                            </div>
+                        </div>
+
+
+                    })
+                }
+                {/* {live.map((val, index) => {
                     return <div className="stream-card-content">
                         <div className="stream-card-image">
 
@@ -127,7 +165,7 @@ const LiveStream = () => {
                     </div>
 
 
-                })}
+                })} */}
             </div>
 
 

@@ -4,7 +4,7 @@ import { ShopContext } from '../Context/ShopContext/ShopContext'
 import dropdown_icon from '../Components/Assets/dropdown_icon.png'
 import { Item } from '../Components/Item/Item'
 import { useEffect } from 'react'
-
+import { Oval } from 'react-loader-spinner'
 
 const ShopCategory = (props) => {  //getting props from app.js
 
@@ -49,11 +49,25 @@ const ShopCategory = (props) => {  //getting props from app.js
 
 
             <div className="prods">
-                {products.map((val, index) => {
+                {products.length == 0 ? <div className="loader"><Oval
+                    height={80}
+                    width={80}
+                    radius={9}
+                    color="green"
+                    ariaLabel="loading"
+                    wrapperStyle={{}}
+                    wrapperClass={{}}
+                /></div> : products.map((val, index) => {
                     if (val.category == props.category) {
                         return <Item key={index} id={val.id} name={val.name} image={val.image} new_price={val.new_price} old_price={val.old_price} />
                     }
                 })}
+
+                {/* {products.map((val, index) => {
+                    if (val.category == props.category) {
+                        return <Item key={index} id={val.id} name={val.name} image={val.image} new_price={val.new_price} old_price={val.old_price} />
+                    }
+                })} */}
             </div>
 
 
