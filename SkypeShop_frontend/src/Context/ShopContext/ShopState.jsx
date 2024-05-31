@@ -14,7 +14,6 @@ const ShopState = (props) => {
             let newprods = { ...products };
             newprods = data
             setproducts(data.products)
-            console.log(products)
         }).catch((err) => {
             console.log(err)
         })
@@ -35,7 +34,6 @@ const ShopState = (props) => {
             }
             return response.json()
         }).then((data) => {
-            console.log(data)
             setcart(data);
         }).catch((err) => {
             console.log(err)
