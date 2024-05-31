@@ -107,6 +107,7 @@ const Poll = () => {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         fetchoption();
     }, [])
 

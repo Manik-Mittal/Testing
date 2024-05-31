@@ -18,7 +18,7 @@ const Popular = () => {
             </div>
 
             {products.length == 0 ?
-                <div className="loader"><Oval
+                <div className="loaderpop"><Oval
                     height={80}
                     width={80}
                     radius={9}
