@@ -22,7 +22,7 @@ const AddProduct = () => {
 
     const getuser = async () => {
 
-        await fetch('https://skypeshop-1.onrender.com/getadmin', {
+        await fetch('https://skypeshop.onrender.com/getadmin', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -36,7 +36,6 @@ const AddProduct = () => {
             }
             return response.json()
         }).then((data) => {
-            console.log(data)
             setProductDetails({ ...productDetails, email: data })
         }).catch((err) => {
             console.log(err)
@@ -78,7 +77,7 @@ const AddProduct = () => {
         let formData = new FormData();
         formData.append('product', image);
 
-        await fetch('https://skypeshop-1.onrender.com/upload', {
+        await fetch('https://skypeshop.onrender.com/upload', {
             method: 'POST',
             body: formData
         })
@@ -94,7 +93,7 @@ const AddProduct = () => {
         productDetails.image = resData.image_url;
         console.log(productDetails);
 
-        await fetch('https://skypeshop-1.onrender.com/addproduct', {
+        await fetch('https://skypeshop.onrender.com/addproduct', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -113,7 +112,7 @@ const AddProduct = () => {
             });
 
 
-        await fetch('https://skypeshop-1.onrender.com/admincart', {
+        await fetch('https://skypeshop.onrender.com/admincart', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

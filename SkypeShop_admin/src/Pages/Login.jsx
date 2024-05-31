@@ -17,13 +17,12 @@ const Login = () => {
 
     const login = async (e) => {
         e.preventDefault();
-        console.log(formdata)
-
+        let f = 1;
         let token;
         try {
             e.preventDefault();
-            console.log(formdata)
-            await fetch('https://skypeshop-1.onrender.com/loginadmin', {
+
+            await fetch('https://skypeshop.onrender.com/loginadmin', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -32,6 +31,8 @@ const Login = () => {
                 body: JSON.stringify(formdata)
             }).then((response) => {
                 if (!response.ok) {
+                    alert('Wait for server being activated')
+                    f = 0;
                     return response.json({ msg: "unable to post" })
                 }
                 return response.json()
@@ -45,7 +46,7 @@ const Login = () => {
                 localStorage.setItem('auth-token', token)
                 window.location = '/admin'
             }
-            else {
+            else if (f == 1) {
                 alert('Enter correct credetials')
             }
         }
@@ -59,9 +60,9 @@ const Login = () => {
     const signup = async (e) => {
         let token;
         try {
+            let f = 1;
             e.preventDefault();
-            console.log(formdata)
-            await fetch('https://skypeshop-1.onrender.com/signupadmin', {
+            await fetch('https://skypeshop.onrender.com/signupadmin', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -70,6 +71,8 @@ const Login = () => {
                 body: JSON.stringify(formdata)
             }).then((response) => {
                 if (!response.ok) {
+                    alert('Wait for server being activated')
+                    f = 0;
                     response.json({ msg: "unable to post" })
                 }
                 return response.json()
@@ -84,7 +87,7 @@ const Login = () => {
                 localStorage.setItem('auth-token', token)
                 window.location = '/admin'
             }
-            else {
+            else if (f == 1) {
                 alert("User Already exists")
             }
         }

@@ -1,7 +1,5 @@
 import React, { useContext, useState } from 'react'
 import '../Pages/CSS/ShopCategory.css'
-import { ShopContext } from '../Context/ShopContext/ShopContext'
-import dropdown_icon from '../Components/Assets/dropdown_icon.png'
 import { Item } from '../Components/Item/Item'
 import { useEffect } from 'react'
 import { Oval } from 'react-loader-spinner'
@@ -38,15 +36,6 @@ const ShopCategory = (props) => {  //getting props from app.js
             <div className='banimg'>
                 <img src={props.banner} alt='' ></img>
             </div>
-            <div className="index">
-                <p>
-                    <span>Showing 1-12</span> out of 36 products
-                </p>
-                <div className="sort">
-                    <button>Sort <img src={dropdown_icon}></img></button>
-                </div>
-            </div>
-
 
             <div className="prods">
                 {products.length == 0 ? <div className="loader"><Oval
@@ -70,10 +59,6 @@ const ShopCategory = (props) => {  //getting props from app.js
                 })} */}
             </div>
 
-
-            <div className='load'>
-                <button>Explore</button>
-            </div>
         </div>
     )
 }
