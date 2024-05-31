@@ -13,7 +13,7 @@ const ListProduct = () => {
         try {
             // Fetch user data
 
-            const userResponse = await fetch('http://localhost:5000/getadmin', {
+            const userResponse = await fetch('https://skypeshop-1.onrender.com/getadmin', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -34,7 +34,7 @@ const ListProduct = () => {
 
 
             //fetch product data of above user
-            const productResponse = await fetch('http://localhost:5000/getadminproducts', {
+            const productResponse = await fetch('https://skypeshop-1.onrender.com/getadminproducts', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -59,7 +59,7 @@ const ListProduct = () => {
     const deleteproduct = async (image) => {
 
         try {
-            const response = await fetch('http://localhost:5000/removeproduct', {
+            const response = await fetch('https://skypeshop-1.onrender.com/removeproduct', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -81,7 +81,7 @@ const ListProduct = () => {
 
         try {
 
-            const response = await fetch('http://localhost:5000/RemoveProductFromAdmincart', {
+            const response = await fetch('https://skypeshop-1.onrender.com/RemoveProductFromAdmincart', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',

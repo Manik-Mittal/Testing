@@ -23,7 +23,7 @@ const Login = () => {
         try {
             e.preventDefault();
             console.log(formdata)
-            await fetch('http://localhost:5000/loginadmin', {
+            await fetch('https://skypeshop-1.onrender.com/loginadmin', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -61,7 +61,7 @@ const Login = () => {
         try {
             e.preventDefault();
             console.log(formdata)
-            await fetch('http://localhost:5000/signupadmin', {
+            await fetch('https://skypeshop-1.onrender.com/signupadmin', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
