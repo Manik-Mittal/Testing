@@ -58,6 +58,7 @@ form.addEventListener('submit', (e) => {
             }).then((data) => {
                 console.log(data)
                 console.log(inviteCode)
+                alert('Kindly wait few seconds we are letting you in !')
                 setTimeout(() => {
                     window.location = `room.html?room=${inviteCode}`
                 }, 3000);
