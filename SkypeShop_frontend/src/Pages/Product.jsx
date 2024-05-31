@@ -11,10 +11,9 @@ const Product = () => {
 
 
     const [product_fetch, setproduct_fetch] = useState({});
-    console.log(product_fetch);
     const { id } = useParams();
+    //console.log(id)
     const fetchallproducts = async () => {
-        console.log(1)
         await fetch('https://skypeshop.onrender.com').then((response) => {
             if (!response) {
                 throw new Error('Failed to fetch newcollection');
@@ -22,24 +21,20 @@ const Product = () => {
             return response.json();
         }).then((data) => {
             let newprods = data.products
-            console.log(newprods)
             let temp = newprods.find((prod) => prod.id == Number(id));
-            // console.log(temp)
             setproduct_fetch(temp)
-            //console.log(product_fetch)
-
         }).catch((err) => {
             console.log(err)
         })
     }
     useEffect(() => {
         fetchallproducts();
-    }, [])
+    }, [id])
 
 
 
 
-    // console.log(product_fetch.name)
+    console.log(product_fetch.image)
     return (
         <>
             {product_fetch ?

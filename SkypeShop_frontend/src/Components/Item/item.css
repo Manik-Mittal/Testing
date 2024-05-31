@@ -1,7 +1,9 @@
 .product {
     width: 250px;
     background-color: #f8f5f5;
+    margin-bottom: 60px;
 }
+
 
 .price span {
     margin-right: 30px;

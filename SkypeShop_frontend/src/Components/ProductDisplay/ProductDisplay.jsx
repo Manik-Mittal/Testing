@@ -52,9 +52,17 @@ const ProductDisplay = (props) => {
                     Vestibulum volutpat enim ac justo lacinia, id euismod nunc molestie.
                     Nam faucibus ipsum ut ante accumsan, non faucibus dolor fermentum.
                     Ut nec magna id mi pellentesque volutpat. Duis quis enim suscipit, vestibulum ligula vel, efficitur metus.
+
+                    <br></br>
+                    <br></br>
+
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nullam in odio ultricies, fringilla nisi sed, pharetra metus.
+                    Maecenas ultrices velit id lectus scelerisque posuere.          Vestibulum volutpat enim ac justo lacinia, id euismod nunc molestie.
+                    Nam faucibus ipsum ut ante accumsan, non faucibus dolor fermentum.
                 </div>
                 <div className="size_descirption">
-                    <h2>Select size</h2>
+                    {/* <h2>Select size</h2>
                     <div className="size">
                         <div className="x">X</div>
                         <div className="x">Xl</div>
@@ -62,7 +70,7 @@ const ProductDisplay = (props) => {
                         <div className="x">S</div>
                         <div className="x">M</div>
                         <div className="x">L</div>
-                    </div>
+                    </div> */}
                     <button onClick={() => { helper(props.id) }}>Add To Cart</button>
                     <p><b>Category:</b>  Women,Tshirt,Crop Top</p>
                     <p><b>Tags:</b>   Modern ,Latest</p>

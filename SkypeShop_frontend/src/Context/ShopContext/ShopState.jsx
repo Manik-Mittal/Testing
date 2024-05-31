@@ -60,7 +60,7 @@ const ShopState = (props) => {
     const [products, setproducts] = useState([])
     const [cartItem, setcart] = useState({});
 
-    console.log(cartItem)
+
     const addTocart = async (id) => {
 
         const itemadded = await fetch('https://skypeshop.onrender.com/addtocart', {
@@ -78,7 +78,6 @@ const ShopState = (props) => {
             return response.json();
         }).then((data) => {
             console.log(data.error)
-
             //if sucessfuly updtaed in database then add to cart in front end else not
             if (data.error) {
                 alert('Please Login / Signup to add data to cart')

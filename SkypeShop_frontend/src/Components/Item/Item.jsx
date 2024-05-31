@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom"
 import './item.css'
-import { useContext } from 'react'
-import ShopContext from '../../Context/ShopContext/ShopContext'
+
 
 const Item = (props) => {
 

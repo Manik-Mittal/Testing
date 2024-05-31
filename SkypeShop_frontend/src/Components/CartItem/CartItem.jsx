@@ -150,7 +150,7 @@ const CartItem = () => {
                 <div className="cart-total-right">
                     <p>If you have any promo code enter it here</p>
                     <input placeholder='promo code' name='total'></input>
-                    <button>Submit</button>
+                    <button onClick={() => { alert('No such promo code availabe ! Retry with valid promocode') }}>Submit</button>
                 </div>
             </div>
         </div >

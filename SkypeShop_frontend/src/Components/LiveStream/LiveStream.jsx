@@ -10,6 +10,7 @@ const LiveStream = () => {
 
 
     const alllivestreams = async () => {
+
         await fetch('https://skypeshop.onrender.com/livestreams').then((Response) => {
             if (!Response.ok) {
                 throw new Error("Unable to fetch livestreams")
@@ -18,6 +19,7 @@ const LiveStream = () => {
         }).then((data) => {
             console.log(data)
             setlive(data.livestreams)
+            alert('Click on the cards to join the live streams')
         }).catch((err) => {
             console.log(err)
             alert('Kindly wait few minutes for server to get activated ')
@@ -144,28 +146,7 @@ const LiveStream = () => {
 
                     })
                 }
-                {/* {live.map((val, index) => {
-                    return <div className="stream-card-content">
-                        <div className="stream-card-image">
 
-                            <img src={val.image} onClick={() => { registeruse(val.url, val.name) }}></img>
-
-                        </div>
-                        <div className="stream-card-text">
-                            <span>{val.name}</span>
-                            <br></br>
-                            <span>${val.old_price}  ${val.new_price}</span>
-                            <br></br>
-                            <br></br>
-
-                            {!val.op1 && !val.op2 && !val.op3 && !val.op4 && !val.op5 ? <button hidden></button> : <Link to={`/poll/${val._id}`}><button className='pollbutton'>Live Polling</button></Link>}
-
-
-                        </div>
-                    </div>
-
-
-                })} */}
             </div>
 
 

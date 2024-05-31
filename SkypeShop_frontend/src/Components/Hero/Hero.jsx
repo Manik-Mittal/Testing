@@ -19,7 +19,7 @@ const Hero = () => {
                 <p className='para2'>
                     Alive Mart
                 </p>
-                <a href='https://skypeshop-1.onrender.com/'> <button className='colbut'>Become a Seller
+                <a href='https://skypeshop-1.onrender.com/'> <button onClick={() => { alert('Kindly wait while the admin server is being activated ') }} className='colbut'>Become a Seller
                     <img src={arrow_icon} alt=''></img>
                 </button></a>
 

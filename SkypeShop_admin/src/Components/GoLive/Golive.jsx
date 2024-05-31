@@ -142,6 +142,15 @@ const Golive = () => {
 
                 <div className="container">
 
+                    <div className="title">
+                        <p>Paste URL of Live Stream by creating a room below</p>
+                        <input type='text' name='url' placeholder='Enter Product name' onChange={handleurl}></input>
+                    </div>
+
+                    <div className="prodbutton">
+                        <a href='https://skype-shop-admin-livestream.vercel.app/'><button>Create Room</button></a>
+                    </div>
+
 
                     <div className="title">
                         <p>Product Name</p>
@@ -205,14 +214,7 @@ const Golive = () => {
 
 
 
-                    <div className="title">
-                        <p>Paste URL of Live Stream by creating a room below</p>
-                        <input type='text' name='url' placeholder='Enter Product name' onChange={handleurl}></input>
-                    </div>
 
-                    <div className="prodbutton">
-                        <a href='https://skype-shop-admin-livestream.vercel.app/'><button>Create Room</button></a>
-                    </div>
 
                     <div className="prodbutton">
                         <button onClick={() => { postlive() }}>Post Live</button>

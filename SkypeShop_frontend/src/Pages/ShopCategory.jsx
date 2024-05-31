@@ -52,11 +52,6 @@ const ShopCategory = (props) => {  //getting props from app.js
                     }
                 })}
 
-                {/* {products.map((val, index) => {
-                    if (val.category == props.category) {
-                        return <Item key={index} id={val.id} name={val.name} image={val.image} new_price={val.new_price} old_price={val.old_price} />
-                    }
-                })} */}
             </div>
 
         </div>
