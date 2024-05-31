@@ -16,11 +16,20 @@
     padding-left: 10px;
     padding-right: 10px;
     box-sizing: border-box;
+    margin-top: -30px;
+}
+
+
+
+.img1 p {
+    margin-top: 16px;
+    font-size: 20px;
 }
 
 .img1 img {
-    height: 55px;
-    width: 200px;
+    height: 60px;
+    width: 250px;
+    margin-top: 10px;
 }
 
 .img2 img {
@@ -30,4 +39,64 @@
 
 .navbar hr {
     margin-top: -8px;
+}
+
+
+
+
+
+.logbut button {
+    padding: 20px;
+    border-radius: 20px;
+    padding-left: 60px;
+    padding-right: 60px;
+    font-size: 20px;
+
+}
+
+.logbut button:hover {
+    background-color: rgb(0, 208, 255);
+}
+
+
+.logbut button {
+    border-radius: 4px;
+    background-color: #5ca1e1;
+    border: none;
+    color: #fff;
+    text-align: center;
+    font-size: 25px;
+    padding: 10px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 36px;
+
+}
+
+.logbut button {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    margin-top: 50px;
+    transition: 0.5s;
+}
+
+.logbut button:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 8px;
+    right: -10px;
+    transition: 0.5s;
+}
+
+.logbut button:hover {
+    padding-right: 24px;
+    padding-left: 8px;
+}
+
+.logbut button:hover:after {
+    opacity: 1;
+    right: 10px;
 }

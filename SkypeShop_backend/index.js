@@ -15,6 +15,7 @@ const Razorpay = require('razorpay');
 const { cloudinaryConnect } = require('./cloudinary');
 const { uploadImageToCloudinary } = require('./media_upload');
 const { mediaDeleter } = require('./media_deleter');
+const AdminLogin = require('./Model/AdminLogin');
 
 require('dotenv').config();
 
@@ -98,7 +99,6 @@ app.post('/upload', upload.single('product'), async (req, res) => {
         console.log(image)
         res.json({
             success: 1,
-            // image_url: `https://skypeshop.onrender.com/images/${req.file.filename}`
             image_url: image.secure_url
         })
     }
@@ -175,7 +175,6 @@ app.post('/signup', async (req, res) => {
     const check = await UserLogin.find({ email: email })
 
     if (check.length > 0) {
-        console.log("duplicate", check)
         return res.status(400).json({ msg: "User already exists" })
     }
     let cart = {};
@@ -199,6 +198,8 @@ app.post('/signup', async (req, res) => {
     const token = jwt.sign(data, 'secret_ecom')
     res.json({ msg: "success", token })
 })
+
+
 
 //api for login endpoint 
 app.post('/login', async (req, res) => {
@@ -226,6 +227,67 @@ app.post('/login', async (req, res) => {
     }
 })
 
+//singup admin api
+app.post('/signupadmin', async (req, res) => {
+
+    //fetch details
+    const { name, email, password } = req.body;
+    console.log(req.body)
+
+    //check for existence
+    const admin = await AdminLogin.find({ email: email })
+    if (admin.length > 0) {
+        res.status(400).json({ msg: "User already exists" })
+    }
+
+    //generate the data 
+    let admindata = {}
+    admindata.name = name;
+    admindata.email = email;
+    admindata.password = password;
+    admindata.product = [];
+
+    //create the admin
+    const admindetails = await AdminLogin.create(admindata);
+    console.log(admindetails);
+
+    //create token
+    const data = {
+        user: {
+            id: admindetails.id
+        }
+    }
+    var token = jwt.sign({ data }, 'secret');
+    console.log(token)
+
+    //send token
+    res.status(200).json({ msg: token })
+})
+
+//login admin api
+app.post('/loginadmin', async (req, res) => {
+    const { email, password } = req.body;
+    const admin = await AdminLogin.find({ email: email });
+    if (admin.length == 0) {
+        res.status(400).send("Please Enter valid email")
+    }
+
+    const dbpassword = admin[0].password;
+    if (dbpassword != password) {
+        res.status(400).send("Please Enter valid Password")
+    }
+    else {
+        const data = {
+            user: {
+                id: admin[0].id
+            }
+        }
+
+        var token = jwt.sign({ data }, 'secret')
+        res.status(200).json({ msg: token })
+    }
+})
+
 //middleware to authenticate user
 const authenticateuser = async (req, res, next) => {
     const token = req.header('auth-token')
@@ -242,37 +304,84 @@ const authenticateuser = async (req, res, next) => {
     }
 }
 
+//middleware to authenticate admin
+const authenticateadmin = async (req, res, next) => {
+    const token = req.header('auth-token')
+
+    if (!token) {
+        res.status(401).json({ error: "Please Login first token not found" })
+    }
+    try {
+        const decode = jwt.verify(token, 'secret')
+        req.body = decode.data.user.id
+
+        next()
+    } catch (error) {
+        res.status(401).json({ error: "Please Login first" })
+    }
+}
+
+//api to add item to admin cart
+app.post('/admincart', async (req, res) => {
+    const { email, name, old_price, new_price, category, image, op1, op2, op3, op4, op5 } = req.body
+    const admin = await AdminLogin.find({ email: req.body.email });
+
+    let cart = admin[0].products;
+    let product = {
+        name: '',
+        old_price: '',
+        new_price: '',
+        category: '',
+        image: '',
+        op1: '',
+        op2: '',
+        op3: '',
+        op4: '',
+        op5: ''
+    };
+
+    product.name = name;
+    product.old_price = old_price;
+    product.new_price = new_price;
+    product.category = category;
+    product.image = image;
+    product.op1 = op1
+    product.op2 = op2
+    product.op3 = op3
+    product.op4 = op4
+    product.op5 = op5
+
+    cart.push(product)
+
+    const update = await AdminLogin.findOneAndUpdate({ email: email }, { products: cart })
+    res.status(200).json({ msg: 'item added successfully to admin cart' })
+})
+
+app.post('/getadminproducts', async (req, res) => {
+    const admin = await AdminLogin.find({ email: req.body.email })
+    if (admin.length == 0) {
+        res.status(400).send("No such user found")
+    }
+    res.status(200).json({ msg: admin[0].products })
+})
+
+
 //api to add cart items
 app.post('/addtocart', authenticateuser, async (req, res) => {
     const user = await UserLogin.find({ _id: req.user.id })
     let itemid = Number(req.body.id)
-    // console.log(itemid)
-    // console.log(req.user.id)
-    // console.log(user[0])
     user[0].cartdata[itemid] += 1;
-    console.log(user)
     await UserLogin.findOneAndUpdate({ _id: req.user.id }, { cartdata: user[0].cartdata })
     res.status(200).json({ msg: "item  added to cart" })
 })
 
-// //api to get usercart
-// app.post('/getcart', authenticateuser, async (req, res) => {
-//     const user = await UserLogin.find({ _id: req.user.id })
-//     console.log(user[0].cartdata)
-//     let cart = user[0].cartdata;
-//     // await UserLogin.findOneAndUpdate({ _id: req.user.id }, { cartdata: user[0].cartdata })
-//     res.status(200).json({ cartdata: cart })
-// })
 
 //api to delete cart items
 app.post('/deletecartitem', authenticateuser, async (req, res) => {
     const user = await UserLogin.find({ _id: req.user.id })
     let itemid = Number(req.body.id)
-    // console.log(itemid)
-    // console.log(req.user.id)
-    // console.log(user[0])
+
     user[0].cartdata[itemid] -= 1;
-    console.log(user)
     await UserLogin.findOneAndUpdate({ _id: req.user.id }, { cartdata: user[0].cartdata })
     res.status(200).json({ msg: "item  deleted fromcart" })
 })
@@ -290,6 +399,13 @@ app.post('/getuser', authenticateuser, async (req, res) => {
     console.log(user[0].email, "**")
     res.status(200).json(user[0].email)
 })
+
+//api to get admin details logged in my website
+app.post('/getadmin', authenticateadmin, async (req, res) => {
+    const user = await AdminLogin.find({ _id: req.body })
+    res.status(200).json(user[0].email)
+})
+
 //api to getthe product for polling  entered by admin 
 app.post('/getproductforpoll', async (req, res) => {
 
@@ -346,8 +462,6 @@ app.post('/updatepolloptions', async (req, res) => {
         const newprod = await Polloption.findOneAndUpdate({ prodid: req.body.id }, { '5': newcount })
     }
     res.status(200).json({ msg: "success" })
-    // console.log(product);
-    // res.status(200).json(product[0])
 })
 //..............................................................................
 
@@ -375,14 +489,30 @@ app.post('/addproduct', async (req, res) => {
 
 //api to delete a document in database
 app.post('/removeproduct', async (req, res) => {
-    const prod = await Product.findOne({ id: req.body.id })
-    await Product.findOneAndDelete({ id: req.body.id })
-
+    const prod = await Product.findOne({ image: req.body.image })
+    await Product.findOneAndDelete({ image: req.body.image })
     let publicid = prod.image.split('/').pop().split('.')[0]
-    console.log(publicid)
     const response = await mediaDeleter(publicid)
     console.log(response)
-    res.json({ msg: "Deletd successfully bro" })
+    res.json({ msg: "Deletd successfully from website" })
+})
+
+
+
+
+//api to delete product from admin cart
+app.post('/RemoveProductFromAdmincart', async (req, res) => {
+
+    const admin = await AdminLogin.findOne({ email: req.body.email })
+    const cart = admin.products
+
+    const filteredcart = cart.filter(obj => obj.image !== req.body.image);
+
+
+    const admincart = await AdminLogin.findOneAndUpdate({ email: req.body.email }, { products: filteredcart })
+
+
+    res.json({ msg: "Deletd successfully from your inventory" })
 })
 
 

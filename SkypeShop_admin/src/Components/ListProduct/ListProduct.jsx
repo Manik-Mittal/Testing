@@ -1,99 +1,152 @@
-import React, { useState, useEffect } from 'react'
-import './ListProduct.css'
-import cross from '../../assets/cross_icon.png'
-import Sidebar from '../Sidebar/Sidebar'
+import React, { useState, useEffect } from 'react';
+import './ListProduct.css';
+import cross from '../../assets/cross_icon.png';
+import Sidebar from '../Sidebar/Sidebar';
+
 const ListProduct = () => {
-
     const [Products, setproducts] = useState([]);
-    console.log("me1")
-    const allproducts = async () => {
-        await fetch('https://skypeshop.onrender.com').then((response) => {
-            if (!response.ok) throw new Error('Failed to upload image');
-            return response.json();
-        }).then((data) => {
-            console.log(data)
-            setproducts(data.products)
-        }).catch((err) => console.log(err))
-    }
+    const [email, setemail] = useState("")
+    console.log(Products)
 
-    const deleteproduct = async (id) => {
-        let obj = {
-            id: 0
-        };
-        obj.id = id;
+    let mail;
+    const getuserandinventory = async () => {
+        try {
+            // Fetch user data
 
-        await fetch('https://skypeshop.onrender.com/removeproduct', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(obj)
-        }).then((response) => {
-            if (!response.ok) {
-                throw new Error('Cant delete product')
+            const userResponse = await fetch('http://localhost:5000/getadmin', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    'auth-token': `${localStorage.getItem('auth-token')}`
+                }
+            }).then((userResponse) => {
+                if (!userResponse.ok) {
+                    throw new Error('Unable to fetch data');
+                }
+                return userResponse.json()
+            }).then((data) => {
+                mail = data;
+                setemail(data)
+            }).catch((err) => {
+                console.log(err)
+            })
+
+
+            //fetch product data of above user
+            const productResponse = await fetch('http://localhost:5000/getadminproducts', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: mail })
+            });
+
+            if (!productResponse.ok) {
+                throw new Error('Failed to get admin products');
             }
-            return response.json();
-        }).then((data) => {
-            console.log(data)
-            allproducts()
-            alert(data.msg)
-        }).catch((err) => {
-            console.log(err)
-        })
-    }
+
+            const productData = await productResponse.json();
+            setproducts(productData.msg); //works async so product is filled after some time
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    //console.log(userResponse)
+
+    const deleteproduct = async (image) => {
+
+        try {
+            const response = await fetch('http://localhost:5000/removeproduct', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ image: image })
+            });
+
+            if (!response.ok) {
+                throw new Error('Cannot delete product');
+            }
+
+            const data = await response.json();
+            console.log(data);
+            alert(data.msg);
+        } catch (err) {
+            console.log(err);
+        }
+
+        try {
+
+            const response = await fetch('http://localhost:5000/RemoveProductFromAdmincart', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    image: image,
+                    email: email
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Cannot delete product');
+            }
+
+            const data = await response.json();
+            console.log(data);
+            getuserandinventory(); // Refetch the products after deletion
+            alert(data.msg);
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     useEffect(() => {
-        console.log("me2")
-        allproducts()
-    }, [])
-
-    console.log("me3")
-    console.log(Products, 1)
+        if (!localStorage.getItem('auth-token')) {
+            alert('Please login or signup first');
+            window.location = "/";
+        }
+        getuserandinventory();
+    }, []);
 
     return (
         <div className="main-container">
             <div className="sidebar">
-                <Sidebar></Sidebar>
+                <Sidebar />
             </div>
             <div className='listproduct'>
                 <h1>All Product Lists</h1>
-
                 <div className="prodlist">
-                    <p> Product</p>
-                    <p> Title</p>
-                    <p> Old price</p>
-                    <p> New Price</p>
-                    <p> Category</p>
-                    <p> Remove</p>
+                    <p>Product</p>
+                    <p>Title</p>
+                    <p>Old price</p>
+                    <p>New Price</p>
+                    <p>Category</p>
+                    <p>Remove</p>
                 </div>
-                <hr></hr>
-
-                {Products.map((product, index) => {
-                    return <div key={index} className="prodlist">
+                <hr />
+                {Products.map((product, index) => (
+                    <div key={index} className="prodlist">
                         <div className="lpimg1">
                             <img src={product.image} alt='' />
                         </div>
-
                         <p>{product.name}</p>
                         <p>{product.old_price}</p>
                         <p>{product.new_price}</p>
                         <p>{product.category}</p>
-
                         <div className="lpimg2">
-                            <img src={cross} alt='' onClick={() => { deleteproduct(product.id) }} />
+                            <img src={cross} alt='' onClick={() => { deleteproduct(product.image) }} />
                         </div>
-
                     </div>
-
-                })}
-
-
+                ))}
             </div>
         </div>
-
-
-    )
+    );
 }
 
-export default ListProduct
+export default ListProduct;

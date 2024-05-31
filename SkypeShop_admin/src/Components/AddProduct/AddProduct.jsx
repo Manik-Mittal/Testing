@@ -1,13 +1,13 @@
-
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AddProduct.css';
 import upload from '../../assets/upload_area.svg';
 import Sidebar from '../Sidebar/Sidebar';
 
 const AddProduct = () => {
+
     const [image, setImage] = useState(false);
     const [productDetails, setProductDetails] = useState({
+        email: "",
         name: "",
         old_price: 0,
         new_price: 0,
@@ -19,6 +19,37 @@ const AddProduct = () => {
         op4: "",
         op5: "",
     });
+
+    const getuser = async () => {
+
+        await fetch('http://localhost:5000/getadmin', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'auth-token': `${localStorage.getItem('auth-token')}`
+            },
+
+        }).then((response) => {
+            if (!response.ok) {
+                throw error('Unable to fetch data')
+            }
+            return response.json()
+        }).then((data) => {
+            console.log(data)
+            setProductDetails({ ...productDetails, email: data })
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+    useEffect(() => {
+        console.log("AddProduct component mounted");
+        if (!localStorage.getItem('auth-token')) {
+            alert('Please login or signup first');
+            window.location = "/";
+        }
+        getuser();
+    }, []);
 
     const imageHandler = (e) => {
         console.log(e.target.files[0]);
@@ -47,7 +78,7 @@ const AddProduct = () => {
         let formData = new FormData();
         formData.append('product', image);
 
-        await fetch('https://skypeshop.onrender.com/upload', {
+        await fetch('http://localhost:5000/upload', {
             method: 'POST',
             body: formData
         })
@@ -63,7 +94,7 @@ const AddProduct = () => {
         productDetails.image = resData.image_url;
         console.log(productDetails);
 
-        await fetch('https://skypeshop.onrender.com/addproduct', {
+        await fetch('http://localhost:5000/addproduct', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -78,7 +109,26 @@ const AddProduct = () => {
                 return response.json();
             })
             .then(data => {
-                if (data) alert('Item added successfully');
+                if (data) alert('Item added successfully to Website');
+            });
+
+
+        await fetch('http://localhost:5000/admincart', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productDetails)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to add product');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data) alert('Item added successfully to your inventory');
             });
     };
 
@@ -161,3 +211,4 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
+

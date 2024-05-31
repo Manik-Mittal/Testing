@@ -34,6 +34,7 @@ const LoginSignup = () => {
             body: JSON.stringify(formdata)
         }).then((response) => {
             if (!response) {
+
                 response.json({ msg: "unable to post" })
             }
             return response.json()

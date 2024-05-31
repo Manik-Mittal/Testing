@@ -84,8 +84,14 @@ label {
 }
 
 .loginimg img {
-    height: 800px;
+    height: 740px;
     width: 600px;
+}
+
+.loginhead {
+    text-align: center;
+    font-weight: 500;
+    font-size: 40px;
 }
 
 @media screen and (max-width: 1700px) {

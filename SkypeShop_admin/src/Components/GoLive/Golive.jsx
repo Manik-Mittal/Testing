@@ -3,6 +3,7 @@ import { useState } from 'react';
 import './GoLive.css'
 import upload from '../../assets/upload_area.svg'
 import Sidebar from '../Sidebar/Sidebar';
+import { useEffect } from 'react';
 const Golive = () => {
     const [image, setimage] = useState(false);
     const [productdetails, setproductdetails] = useState(
@@ -124,6 +125,13 @@ const Golive = () => {
 
         setproductdetails({ ...productdetails, url: e.target.value });
     }
+
+    useEffect(() => {
+        if (!localStorage.getItem('auth-token')) {
+            alert('Please login or signup first')
+            window.location = "/";
+        }
+    }, [])
     return (
 
         <div className="main-container">
