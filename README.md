@@ -33,5 +33,9 @@ To get started with SkypeShop, simply visit our website and create an account. O
 ## Contact Us
 If you have any questions, feedback, or suggestions, feel free to reach out to us at ---. We're always eager to hear from our users and improve our platform to better serve your needs.
 
-## License
-SkypeShop is licensed under the [MIT License](LICENSE).
+## Deployment Link
+https://skype-shop.vercel.app/
+
+## Video Description of the project 
+https://drive.google.com/file/d/1nbwrFemVB3muv7UbW3nnQXG61wMj-sof/view?usp=sharing
+
