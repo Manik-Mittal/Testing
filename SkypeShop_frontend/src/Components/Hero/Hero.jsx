@@ -20,11 +20,11 @@ const Hero = () => {
                 <p className='para2'>
 
                     <TypingEffect
-                        text={['LiveStream']}
-                        speed={60}      // Speed at which the text is typed (in milliseconds)
-                        eraseSpeed={30}  // Speed at which the text is erased (in milliseconds)
-                        typingDelay={20}  // Delay before typing starts (in milliseconds)
-                        eraseDelay={500} // Delay before erasing starts (in milliseconds)
+                        text={['Live Stream']}
+                        speed={100}      // Speed at which the text is typed (in milliseconds)
+                        eraseSpeed={100}  // Speed at which the text is erased (in milliseconds)
+                        typingDelay={100}  // Delay before typing starts (in milliseconds)
+                        eraseDelay={100} // Delay before erasing starts (in milliseconds)
                     />
                     <br></br>
                     Selling Platform
