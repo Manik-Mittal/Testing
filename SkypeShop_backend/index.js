@@ -149,7 +149,7 @@ app.post('/goinlive', async (req, res) => {
     res.status(201).json({ useinlive })
 })
 
-//api to get all those user who are not in a live yet
+//api to enter a specific user in a live stream
 app.post('/searchuserinlive', async (req, res) => {
     console.log(req.body)
     const users = await UserInLive.find({ email: req.body.email });
@@ -357,6 +357,22 @@ app.post('/admincart', async (req, res) => {
     res.status(200).json({ msg: 'item added successfully to admin cart' })
 })
 
+
+//api to delete product from admin cart
+app.post('/RemoveProductFromAdmincart', async (req, res) => {
+
+    const admin = await AdminLogin.findOne({ email: req.body.email })
+    const cart = admin.products
+
+    const filteredcart = cart.filter(obj => obj.image !== req.body.image);
+
+    const admincart = await AdminLogin.findOneAndUpdate({ email: req.body.email }, { products: filteredcart })
+
+
+    res.json({ msg: "Deletd successfully from your inventory" })
+})
+
+
 app.post('/getadminproducts', async (req, res) => {
     const admin = await AdminLogin.find({ email: req.body.email })
     if (admin.length == 0) {
@@ -366,7 +382,7 @@ app.post('/getadminproducts', async (req, res) => {
 })
 
 
-//api to add cart items
+//api to add  user cart items
 app.post('/addtocart', authenticateuser, async (req, res) => {
     const user = await UserLogin.find({ _id: req.user.id })
     let itemid = Number(req.body.id)
@@ -376,7 +392,7 @@ app.post('/addtocart', authenticateuser, async (req, res) => {
 })
 
 
-//api to delete cart items
+//api to delete user cart items
 app.post('/deletecartitem', authenticateuser, async (req, res) => {
     const user = await UserLogin.find({ _id: req.user.id })
     let itemid = Number(req.body.id)
@@ -386,14 +402,14 @@ app.post('/deletecartitem', authenticateuser, async (req, res) => {
     res.status(200).json({ msg: "item  deleted fromcart" })
 })
 
-//api to getall cart items
+//api to getall user  items
 app.post('/getcartitems', authenticateuser, async (req, res) => {
     const user = await UserLogin.find({ _id: req.user.id })
     console.log(user[0].cartdata)
     res.status(200).json(user[0].cartdata)
 })
 
-//api to get user details logged in my website
+//api to get user details logged in my website using his token
 app.post('/getuser', authenticateuser, async (req, res) => {
     const user = await UserLogin.find({ _id: req.user.id })
     console.log(user[0].email, "**")
@@ -500,20 +516,7 @@ app.post('/removeproduct', async (req, res) => {
 
 
 
-//api to delete product from admin cart
-app.post('/RemoveProductFromAdmincart', async (req, res) => {
 
-    const admin = await AdminLogin.findOne({ email: req.body.email })
-    const cart = admin.products
-
-    const filteredcart = cart.filter(obj => obj.image !== req.body.image);
-
-
-    const admincart = await AdminLogin.findOneAndUpdate({ email: req.body.email }, { products: filteredcart })
-
-
-    res.json({ msg: "Deletd successfully from your inventory" })
-})
 
 
 //api to update product
