@@ -8,8 +8,10 @@
     top: -130px;
 }
 
-.hero h2 {
+
+.hero h1 {
     font-weight: 500;
+    margin-bottom: -20pxpx;
 }
 
 .left {
@@ -35,7 +37,7 @@
 }
 
 .para1 {
-    font-size: 90px;
+    font-size: 77px;
     font-weight: 500;
     margin: 0px;
     position: relative;
@@ -43,9 +45,10 @@
 }
 
 .para2 {
-    font-size: 90px;
+    font-size: 65px;
     font-weight: 500;
-    margin: 0px;
+    margin-top: 10px;
+    margin-bottom: 0px;
     position: relative;
     top: -30px;
 }

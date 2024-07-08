@@ -4,20 +4,34 @@ import hand_icon from '../Assets/hand_icon.png'
 import arrow_icon from '../Assets/arrow.png'
 import hero_image from '../Assets/hero_image.png'
 import { Link } from "react-router-dom";
+import Typical from 'react-typical'
 
 const Hero = () => {
     return (
         <div className='hero'>
 
             <div className="left">
-                <h2>New Arrivals Only</h2>
+                <h1>New Arrivals Only</h1>
                 <div className='left-text'>
-                    <p>India's</p>
+                    <p>India's First</p>
                     <img src={hand_icon} alt='' ></img>
                 </div>
-                <p className='para1'>First</p>
+                {/* <p className='para1'>First</p> */}
                 <p className='para2'>
-                    Alive Mart
+
+                    <Typical
+                        loop={Infinity}
+                        steps={[
+                            'Live Stream',
+                            2000,
+                            '',
+                            2000,
+                            'Live Stream',
+                            1000
+
+                        ]}
+                    />
+                    Selling Platform
                 </p>
                 <a href='https://skypeshop-1.onrender.com/'> <button onClick={() => { alert('Kindly wait while the admin server is being activated ') }} className='colbut'>Become a Seller
                     <img src={arrow_icon} alt=''></img>
