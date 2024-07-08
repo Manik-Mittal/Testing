@@ -4,7 +4,7 @@ import hand_icon from '../Assets/hand_icon.png'
 import arrow_icon from '../Assets/arrow.png'
 import hero_image from '../Assets/hero_image.png'
 import { Link } from "react-router-dom";
-import Typical from 'react-typical'
+import TypingEffect from 'react-typing-effect';
 
 const Hero = () => {
     return (
@@ -19,19 +19,16 @@ const Hero = () => {
                 {/* <p className='para1'>First</p> */}
                 <p className='para2'>
 
-                    <Typical
-                        loop={Infinity}
-                        steps={[
-                            'Live Stream',
-                            2000,
-                            '',
-                            2000,
-                            'Live Stream',
-                            1000
-
-                        ]}
+                    <TypingEffect
+                        text={['LiveStream']}
+                        speed={60}      // Speed at which the text is typed (in milliseconds)
+                        eraseSpeed={30}  // Speed at which the text is erased (in milliseconds)
+                        typingDelay={20}  // Delay before typing starts (in milliseconds)
+                        eraseDelay={500} // Delay before erasing starts (in milliseconds)
                     />
+                    <br></br>
                     Selling Platform
+
                 </p>
                 <a href='https://skypeshop-1.onrender.com/'> <button onClick={() => { alert('Kindly wait while the admin server is being activated ') }} className='colbut'>Become a Seller
                     <img src={arrow_icon} alt=''></img>
