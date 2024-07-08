@@ -21,8 +21,8 @@ const Hero = () => {
 
                     <TypingEffect
                         text={['Live Stream']}
-                        speed={100}      // Speed at which the text is typed (in milliseconds)
-                        eraseSpeed={100}  // Speed at which the text is erased (in milliseconds)
+                        speed={180}      // Speed at which the text is typed (in milliseconds)
+                        eraseSpeed={150}  // Speed at which the text is erased (in milliseconds)
                         typingDelay={100}  // Delay before typing starts (in milliseconds)
                         eraseDelay={100} // Delay before erasing starts (in milliseconds)
                     />
