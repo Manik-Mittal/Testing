@@ -39,3 +39,6 @@ https://skype-shop.vercel.app/
 ## Video Description of the project 
 https://drive.google.com/file/d/1nbwrFemVB3muv7UbW3nnQXG61wMj-sof/view?usp=sharing
 
+## Documentation of the project 
+https://drive.google.com/file/d/10SHxNjChDIi5n-8gBh6gXPMPZvVyf5-G/view
+
