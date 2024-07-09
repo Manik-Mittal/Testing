@@ -19,6 +19,8 @@
     margin-left: 50px;
 }
 
+
+
 .left-text {
     display: flex;
     align-items: center;
@@ -28,6 +30,7 @@
     font-size: 90px;
     font-weight: 500;
     margin-right: 10px;
+    margin-top: 10px;
 }
 
 .left-text img {
