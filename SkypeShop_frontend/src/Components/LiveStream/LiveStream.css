@@ -6,6 +6,11 @@
     margin-left: 110px;
 }
 
+.live-head {
+    position: relative;
+    margin-top: -100px;
+}
+
 .live {
     min-height: 100vh;
     position: relative;
@@ -48,7 +53,7 @@
     border-radius: 10px;
     color: white;
     background-color: red;
-    margin-top: 10px;
+    margin-top: -15px;
 }
 
 .loader-live {
