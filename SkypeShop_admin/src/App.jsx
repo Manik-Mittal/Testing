@@ -6,6 +6,7 @@ import Golive from './Components/GoLive/Golive'
 import Login from './Pages/Login'
 import Navbar from './Components/Navbar/Navbar'
 import Admin from './Pages/Admin'
+import Appointment from './Components/Appointment/Appointment'
 
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
         <Route path='/addproduct' element={<AddProduct />}></Route>
         <Route path='/listproduct' element={<ListProduct />}></Route>
         <Route path='/live' element={<Golive />}></Route>
+        <Route path='/createappointment' element={<Appointment />}></Route>
 
       </Routes>
 

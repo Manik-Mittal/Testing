@@ -15,6 +15,9 @@ const AdminLogin = new mongoose.Schema({
     products: {
         type: Array,
     },
+    url: {
+        type: String,
+    },
 })
 
 module.exports = mongoose.model('AdminLogin', AdminLogin)

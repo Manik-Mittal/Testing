@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-const CalendarAppointment = ({ url }) => {
-    let urll = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0oZFPukHO70_KfXy2JhWUcXTzE42BEJR0qR-8H7O73KMZ1VmmSDoVyRL95xGfpGYhvBfVF9g_X?gv=true';
+const CalendarAppointment = ({ urlfrombackend }) => {
+    const scriptLoaded = useRef(false);
+
     useEffect(() => {
+        if (scriptLoaded.current) return; // If script is already loaded, exit
 
-
-        // Load the Google Calendar scheduling script
         const loadScript = () => {
             const script = document.createElement('script');
             script.src = 'https://calendar.google.com/calendar/scheduling-button-script.js';
@@ -13,11 +13,12 @@ const CalendarAppointment = ({ url }) => {
             script.onload = () => {
                 if (window.calendar && window.calendar.schedulingButton) {
                     window.calendar.schedulingButton.load({
-                        url: urll,
+                        url: urlfrombackend,
                         color: '#039BE5',
                         label: 'Book an appointment',
                         target: document.getElementById('calendarButtonContainer'),
                     });
+                    scriptLoaded.current = true; // Mark script as loaded
                 } else {
                     console.error('Google Calendar scheduling button not available.');
                 }
@@ -26,10 +27,6 @@ const CalendarAppointment = ({ url }) => {
                 console.error('Failed to load Google Calendar scheduling script.');
             };
             document.body.appendChild(script);
-
-            return () => {
-                document.body.removeChild(script);
-            };
         };
 
         // Load the CSS for Google Calendar scheduling button
@@ -45,12 +42,14 @@ const CalendarAppointment = ({ url }) => {
         };
 
         loadCSS();
-        const cleanupScript = loadScript();
+        loadScript();
 
         return () => {
-            cleanupScript();
+            // Cleanup the script if necessary
+            const script = document.querySelector('script[src="https://calendar.google.com/calendar/scheduling-button-script.js"]');
+            if (script) document.body.removeChild(script);
         };
-    }, []);
+    }, [urlfrombackend]);
 
     return (
         <div>

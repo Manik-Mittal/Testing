@@ -529,6 +529,43 @@ app.patch('/updateproduct', async (req, res) => {
     res.json({ product })
 })
 
+app.post('/createappointmentbooking', async (req, res) => {
+
+    const { email, url } = req.body;
+    console.log(email, url);
+    const product = await AdminLogin.findOneAndUpdate(
+        { email: email },
+        { $set: { url: url } }, // Corrected: update operation
+        { new: true, runValidators: true, upsert: true }
+    );
+
+    if (!product) {
+        return res.json({ msg: "No data found" });
+    }
+    res.json({ product });
+});
+
+
+app.post('/getadminimagebases', async (req, res) => {
+    const { image } = req.body;
+
+    try {
+        const response = await AdminLogin.findOne(
+            { "products.image": image }, // Query to find the product with the specified image
+            { url: 1 } // Project the fields you want to return
+        );
+
+        if (!response) {
+            return res.json({ msg: "No seller found with the specified image URL" });
+        }
+
+        res.json({ response });
+    } catch (error) {
+        res.status(500).json({ error: "An error occurred while fetching the data." });
+    }
+});
+
+
 //if no url satisfied
 app.use(notfound)
 
