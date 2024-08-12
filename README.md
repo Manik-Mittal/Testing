@@ -7,6 +7,7 @@ SkypeShop is an innovative platform that brings the excitement and engagement of
 
 
 
+  
 
 
 ### Live Shopping

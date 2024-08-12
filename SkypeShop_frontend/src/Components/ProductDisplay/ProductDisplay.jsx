@@ -4,8 +4,11 @@ import star_icon from '../Assets/star_icon.png'
 import star_dull_icon from '../Assets/star_dull_icon.png'
 import { useContext } from 'react'
 import { ShopContext } from '../../Context/ShopContext/ShopContext'
+import CalendarAppointment from '../../Pages/test'
 
 const ProductDisplay = (props) => {
+
+
     const { addTocart } = useContext(ShopContext);
     const helper = (id) => {
         addTocart(id)
@@ -72,6 +75,8 @@ const ProductDisplay = (props) => {
                         <div className="x">L</div>
                     </div> */}
                     <button onClick={() => { helper(props.id) }}>Add To Cart</button>
+                    <CalendarAppointment />
+
                     <p><b>Category:</b>  Women,Tshirt,Crop Top</p>
                     <p><b>Tags:</b>   Modern ,Latest</p>
 
