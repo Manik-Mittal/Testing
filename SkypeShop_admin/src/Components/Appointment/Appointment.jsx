@@ -10,6 +10,10 @@ const Appointment = () => {
         url: ""
     });
 
+    const parseUrl = (text) => {
+        const urlMatch = text.match(/url:\s*'([^']+)'/);
+        return urlMatch ? urlMatch[1] : null;
+    }
     const getuser = async () => {
 
         await fetch('https://skypeshop.onrender.com/getadmin', {
@@ -46,7 +50,10 @@ const Appointment = () => {
         setUrlDetails({ ...urlDetails, url: e.target.value })
     }
     const postlive = async () => {
+        const parsedUrl = parseUrl(urlDetails.url)
+        setUrlDetails({ ...urlDetails, url: parsedUrl })
         try {
+            console.log(urlDetails)
             await fetch('http://localhost:5000/createappointmentbooking', {
                 method: 'POST',
                 headers: {
