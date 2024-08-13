@@ -19,8 +19,8 @@ const AdminLogin = require('./Model/AdminLogin');
 
 require('dotenv').config();
 
-//const port = process.env.PORT || 5000
-const port = 5500
+const port = process.env.PORT || 5000
+
 
 const allowedOrigins = ['https://skype-shop.vercel.app', 'http://localhost:3000', 'http://localhost:8000', 'https://skypeshop-1.onrender.com', 'https://skype-shop-admin-livestream.vercel.app', 'http://127.0.0.1:5500', 'https://skype-shop-livestream.vercel.app'];
 
