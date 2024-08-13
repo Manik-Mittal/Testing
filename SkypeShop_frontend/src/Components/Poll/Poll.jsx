@@ -10,16 +10,13 @@ const Poll = () => {
 
     //options of poll
     const [options, setoptions] = useState({})
+
     //cnt of poll
     const [polloption, setpolloptions] = useState({})
-    const [vote, setvote] = useState({
-        '1': 0,
-        '2': 0,
-        '3': 0,
-        '4': 0,
-        '5': 0
-    })
+    const [voted, setvoted] = useState(false);
 
+    console.log(polloption);
+    console.log(options);
 
     const fetchoption = async () => {
 
@@ -38,7 +35,7 @@ const Poll = () => {
             return response.json()
         }).then((data) => {
             setoptions(data)
-            console.log(data)
+            //console.log(data)
         }).catch((err) => {
             console.log(err)
         })
@@ -61,7 +58,7 @@ const Poll = () => {
             return response.json()
         }).then((data) => {
             setpolloptions(data)
-            console.log(data)
+            //console.log(data)
         }).catch((err) => {
             console.log(err)
         })
@@ -71,14 +68,12 @@ const Poll = () => {
         console.log(cnt, id, optno)
 
         //posting the updated options to database
-        if (vote[optno] == 0) {
+        if (voted === false) {
             const newoptions = { ...polloption };
             newoptions[optno] = newoptions[optno] + 1;
             setpolloptions(newoptions)
 
-            const newvote = { ...vote };
-            newvote[optno] = 1;
-            setvote(newvote);
+            setvoted(true)
 
             await fetch('https://skypeshop.onrender.com/updatepolloptions', {
                 method: 'POST',
