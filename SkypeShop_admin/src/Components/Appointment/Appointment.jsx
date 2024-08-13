@@ -256,6 +256,10 @@ const Appointment = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [hasFetchedImages, setHasFetchedImages] = useState(false);
 
+    const parseUrl = (text) => {
+        const urlMatch = text.match(/url:\s*'([^']+)'/);
+        return urlMatch ? urlMatch[1] : null;
+    }
     const getuser = async () => {
         try {
             const response = await fetch('https://skypeshop.onrender.com/getadmin', {
@@ -295,8 +299,10 @@ const Appointment = () => {
     };
 
     const postlive = async () => {
+        const parsedUrl = parseUrl(urlDetails.url)
+        setUrlDetails({ ...urlDetails, url: parsedUrl })
         try {
-            const response = await fetch('http://localhost:5500/createappointmentbooking', {
+            await fetch('http://localhost:5000/createappointmentbooking', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
