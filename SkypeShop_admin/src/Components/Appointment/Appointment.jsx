@@ -58,6 +58,7 @@ const Appointment = () => {
             }));
         }
 
+
         try {
             console.log("Posting with updated URL details:", { ...urlDetails, url: parsedUrl });
             await fetch('http://localhost:5000/createappointmentbooking', {
