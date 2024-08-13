@@ -68,6 +68,12 @@ const modalStyles = {
     },
 };
 
+const carouselImages = [
+    { src: '/public/step1.png', alt: 'Step 1' },
+    { src: '/public/step2.png', alt: 'Step 2' },
+    { src: '/public/step3.png', alt: 'Step 3' },
+    { src: '/public/step4.png', alt: 'Step 4' }
+];
 // Modal component
 const Modal = ({ isOpen, onClose, children }) => {
     if (!isOpen) return null;
@@ -127,6 +133,7 @@ const Carousel = ({ images }) => {
     );
 };
 
+
 const Appointment = () => {
     const [urlDetails, setUrlDetails] = useState({
         email: "",
@@ -135,10 +142,19 @@ const Appointment = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [hasFetchedImages, setHasFetchedImages] = useState(false);
 
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
     const parseUrl = (text) => {
         const urlMatch = text.match(/url:\s*'([^']+)'/);
         return urlMatch ? urlMatch[1] : null;
-    }
+    };
+
     const getuser = async () => {
         try {
             const response = await fetch('https://skypeshop.onrender.com/getadmin', {
@@ -179,16 +195,16 @@ const Appointment = () => {
 
     const postlive = async () => {
         const parsedUrl = parseUrl(urlDetails.url);
-        if (parsedUrl) {
-            setUrlDetails((prevState) => ({
-                ...prevState,
-                url: parsedUrl
-            }));
-        }
+        console.log(parsedUrl);
 
+        // If parsedUrl exists, create a new object with the updated URL
+        const updatedUrlDetails = parsedUrl
+            ? { ...urlDetails, url: parsedUrl }
+            : urlDetails;
 
         try {
-            console.log(urlDetails)
+            console.log(updatedUrlDetails);
+
             await fetch('http://localhost:5000/createappointmentbooking', {
                 method: 'POST',
                 headers: {
@@ -196,31 +212,30 @@ const Appointment = () => {
                     'Content-Type': 'application/json',
                     'auth-token': localStorage.getItem('auth-token')
                 },
-                body: JSON.stringify(urlDetails)
+                body: JSON.stringify(updatedUrlDetails) // Use the updated state here
             }).then((response) => {
                 if (!response.ok) {
-                    alert('Wait for server being activated')
-                    response.json({ msg: "unable to post" })
+                    alert('Wait for server being activated');
+                    response.json({ msg: "unable to post" });
                 }
-                return response.json()
-            }
-            ).then((data) => {
-                alert('Appointment Posted')
+                return response.json();
+            }).then((data) => {
+                alert('Appointment Posted');
             }).catch((err) => {
-                console.log(err)
-            })
+                console.log(err);
+            });
+        } catch (err) {
+            console.log(err);
         }
-        catch (err) {
-            console.log(err)
-        }
-    }
+    };
+
 
     useEffect(() => {
         if (!localStorage.getItem('auth-token')) {
             alert('Please login or signup first')
             window.location = "/";
         }
-    }, [])
+    }, []);
 
     return (
         <div className="main-container">
@@ -249,7 +264,7 @@ const Appointment = () => {
                 {hasFetchedImages && <Carousel images={carouselImages} />}
             </Modal>
         </div>
-    )
-}
+    );
+};
 
 export default Appointment;
