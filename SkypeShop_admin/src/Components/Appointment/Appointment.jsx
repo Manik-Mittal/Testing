@@ -50,10 +50,16 @@ const Appointment = () => {
         setUrlDetails({ ...urlDetails, url: e.target.value })
     }
     const postlive = async () => {
-        const parsedUrl = parseUrl(urlDetails.url)
-        setUrlDetails({ ...urlDetails, url: parsedUrl })
+        const parsedUrl = parseUrl(urlDetails.url);
+        if (parsedUrl) {
+            setUrlDetails((prevState) => ({
+                ...prevState,
+                url: parsedUrl
+            }));
+        }
+
         try {
-            console.log(urlDetails)
+            console.log("Posting with updated URL details:", { ...urlDetails, url: parsedUrl });
             await fetch('http://localhost:5000/createappointmentbooking', {
                 method: 'POST',
                 headers: {
@@ -61,22 +67,20 @@ const Appointment = () => {
                     'Content-Type': 'application/json',
                     'auth-token': localStorage.getItem('auth-token')
                 },
-                body: JSON.stringify(urlDetails)
+                body: JSON.stringify({ ...urlDetails, url: parsedUrl })
             }).then((response) => {
                 if (!response.ok) {
-                    alert('Wait for server being activated')
-                    response.json({ msg: "unable to post" })
+                    alert('Wait for server being activated');
+                    throw new Error('Unable to post');
                 }
-                return response.json()
-            }
-            ).then((data) => {
-                alert('Appointment Posted')
+                return response.json();
+            }).then((data) => {
+                alert('Appointment Posted');
             }).catch((err) => {
-                console.log(err)
-            })
-        }
-        catch (err) {
-            console.log(err)
+                console.log(err);
+            });
+        } catch (err) {
+            console.log(err);
         }
     }
 
