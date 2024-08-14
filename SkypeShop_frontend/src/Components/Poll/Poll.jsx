@@ -1,139 +1,156 @@
-import React from 'react'
-import './Poll.css'
-import { json, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Bar } from 'react-chartjs-2';
+import Chart from 'chart.js/auto';
+import './Poll.css';
 
 const Poll = () => {
-
     const { id } = useParams();
 
-    //options of poll
-    const [options, setoptions] = useState({})
+    const [options, setOptions] = useState({});
+    const [pollOptions, setPollOptions] = useState({});
+    const [voted, setVoted] = useState(false);
 
-    //cnt of poll
-    const [polloption, setpolloptions] = useState({})
-    const [voted, setvoted] = useState(false);
-
-    console.log(polloption);
-    console.log(options);
-
-    const fetchoption = async () => {
-
-        //fecth options from database
-        const product = await fetch('https://skypeshop.onrender.com/getproductforpoll', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify({ "id": id })
-        }).then((response) => {
-            if (!response) {
-                throw new Error("Unable to fetch the prodct from database")
-            }
-            return response.json()
-        }).then((data) => {
-            setoptions(data)
-            //console.log(data)
-        }).catch((err) => {
-            console.log(err)
-        })
-
-        console.log(options)
-
-
-        //to fecth the cnt of options from database
-        await fetch('https://skypeshop.onrender.com/getpolloptions', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify({ "id": id })
-        }).then((response) => {
-            if (!response) {
-                throw new Error("Unable to fetch the prodct from database")
-            }
-            return response.json()
-        }).then((data) => {
-            setpolloptions(data)
-            //console.log(data)
-        }).catch((err) => {
-            console.log(err)
-        })
-    }
-
-    const handlecount = async (cnt, id, optno) => {
-        console.log(cnt, id, optno)
-
-        //posting the updated options to database
-        if (voted === false) {
-            const newoptions = { ...polloption };
-            newoptions[optno] = newoptions[optno] + 1;
-            setpolloptions(newoptions)
-
-            setvoted(true)
-
-            await fetch('https://skypeshop.onrender.com/updatepolloptions', {
+    const fetchOptions = async () => {
+        try {
+            const productResponse = await fetch('https://skypeshop.onrender.com/getproductforpoll', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
-                    'Content-type': 'application/json',
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ "id": id, "optno": optno })
-            }).then((response) => {
-                if (!response) {
-                    throw new Error("Unable to fetch the prodct from database")
-                }
-                return response.json()
-            }).then((data) => {
+                body: JSON.stringify({ id }),
+            });
+            const productData = await productResponse.json();
+            setOptions(productData);
 
-                console.log(data)
-            }).catch((err) => {
-                console.log(err)
-            })
-
+            const pollResponse = await fetch('https://skypeshop.onrender.com/getpolloptions', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id }),
+            });
+            const pollData = await pollResponse.json();
+            setPollOptions(pollData);
+        } catch (err) {
+            console.error(err);
         }
-        else {
-            alert('You Already voted for this option')
-        }
+    };
 
-    }
+    const handleCount = async (cnt, id, optNo) => {
+        if (!voted) {
+            const newOptions = { ...pollOptions };
+            newOptions[optNo] += 1;
+            setPollOptions(newOptions);
+            setVoted(true);
+
+            try {
+                await fetch('https://skypeshop.onrender.com/updatepolloptions', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id, optNo }),
+                });
+            } catch (err) {
+                console.error(err);
+            }
+        } else {
+            alert('You have already voted for this option');
+        }
+    };
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        fetchoption();
-    }, [])
+        fetchOptions();
+    }, []);
+
+    const data = {
+        labels: Object.values(options),
+        datasets: [
+            {
+                label: 'Votes',
+                data: Object.values(pollOptions),
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+            },
+        ],
+    };
+
+    const optionsConfig = {
+        maintainAspectRatio: false, // Ensure the chart respects container dimensions
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: 'Options',
+                },
+                ticks: {
+                    autoSkip: false,
+                },
+            },
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Votes',
+                },
+            },
+        },
+    };
+
+    const chartContainerStyle = {
+        width: '90%',
+        height: '300px',
+        margin: '30px auto 0', // Adjust top margin to shift the chart down
+    };
+
+    const headingStyle = {
+        marginBottom: '10px', // Decrease bottom margin to move heading closer to the chart
+    };
+
+    const optionsContainerStyle = {
+        marginTop: '10px', // Decrease top margin to move options up closer to the chart
+    };
+
+    const buttonStyle = {
+        border: '1px solid #ccc',
+        padding: '10px',
+        cursor: 'pointer',
+
+    };
+
+    const buttonHoverStyle = {
+        backgroundColor: '',
+    };
 
     return (
-
-        <div className='poll'>
-            <h1>LivePolling</h1>
-            <div className='options'>
-                <div className="op1">
-                    {!options.op1 ? <p hidden>{polloption[1]}</p> : <p>{polloption[1]}</p>}
-                    {!options.op1 ? <button hidden>{options.op1}</button> : <button onClick={() => handlecount(polloption[1], polloption.prodid, 1)}>{options.op1}  </button>}
-                </div>
-                <div className="op2">
-                    {!options.op2 ? <p hidden>{polloption[2]}</p> : <p>{polloption[2]}</p>}
-                    {!options.op2 ? <button hidden>{options.op2}</button> : <button onClick={() => handlecount(polloption[2], polloption.prodid, 2)}>{options.op2}</button>}
-                </div>
-                <div className="op3">
-                    {!options.op3 ? <p hidden>{polloption[3]}</p> : <p>{polloption[3]}</p>}
-                    {!options.op3 ? <button hidden>{options.op3}</button> : <button onClick={() => handlecount(polloption[3], polloption.prodid, 3)}>{options.op3} </button>}
-                </div>
-                <div className="op4">
-                    {!options.op4 ? <p hidden>{polloption[4]}</p> : <p>{polloption[4]}</p>}
-                    {!options.op4 ? <button hidden>{options.op4}</button> : <button onClick={() => handlecount(polloption[4], polloption.prodid, 4)}>{options.op4}  </button>}
-                </div>
-                <div className="op5">
-                    {!options.op5 ? <p hidden>{polloption[5]}</p> : <p>{polloption[5]}</p>}
-                    {!options.op5 ? <button hidden>{options.op5}</button> : <button onClick={handlecount(polloption[5], polloption.prodid, 5)}>{options.op5}  </button>}
-                </div>
+        <div className="poll" style={{ padding: '20px' }}>
+            <h1 style={headingStyle}>Live Polling</h1>
+            <div className="chart-container" style={chartContainerStyle}>
+                <Bar data={data} options={optionsConfig} />
+            </div>
+            <div className="options" style={optionsContainerStyle}>
+                {Object.entries(options).map(([key, value], index) => (
+                    <div key={key} className={`op${index + 1}`} style={{ alignItems: 'center', gap: '10px' }}>
+                        <p>{pollOptions[index + 1]}</p>
+                        <button
+                            style={buttonStyle}
+                            onMouseOver={(e) => e.currentTarget.style.backgroundColor = buttonHoverStyle.backgroundColor}
+                            onMouseOut={(e) => e.currentTarget.style.backgroundColor = buttonStyle.backgroundColor}
+                            onClick={() => handleCount(pollOptions[index + 1], id, index + 1)}
+                        >
+                            {value}
+                        </button>
+                    </div>
+                ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Poll
+export default Poll;
