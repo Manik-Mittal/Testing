@@ -16,7 +16,7 @@ const ProductDisplay = (props) => {
 
     const fetchAdminImageBases = async () => {
         try {
-            const response = await fetch('http://localhost:5500/getadminimagebases', {
+            const response = await fetch('http://localhost:5000/getadminimagebases', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
