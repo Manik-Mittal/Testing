@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Appointment.css';
+import img1 from '../../../public/step1.png';
 import Sidebar from '../Sidebar/Sidebar';
 
 // CSS for the modal
@@ -69,10 +70,10 @@ const modalStyles = {
 };
 
 const carouselImages = [
-    { src: '/public/step1.png', alt: 'Step 1' },
-    { src: '/public/step2.png', alt: 'Step 2' },
-    { src: '/public/step3.png', alt: 'Step 3' },
-    { src: '/public/step4.png', alt: 'Step 4' }
+    { src: '/public/step2.png', alt: 'Step 1' },
+    { src: '/step2.png', alt: 'Step 2' },
+    { src: '/step3.png', alt: 'Step 3' },
+    { src: '/step4.png', alt: 'Step 4' }
 ];
 // Modal component
 const Modal = ({ isOpen, onClose, children }) => {
